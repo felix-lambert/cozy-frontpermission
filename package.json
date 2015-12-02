@@ -1,5 +1,5 @@
 {
-	"name": "cozy-front",
+	"name": "cozy-front-permission",
 	"version": "0.0.1",
 	"description": "An application to get you started with web app development and Cozy.",
 	"cozy-type": "static",
