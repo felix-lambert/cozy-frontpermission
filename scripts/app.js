@@ -68,12 +68,8 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
                 );
             }
         }, false);
-        $rootScope.$on('clickEvent', function(a, b) {
-            //a,b - event object details
-            console.log('a');
-            console.log(a);
-            console.log('b');
-            console.log(b);
+        $rootScope.$on('clickEvent', function(e, result) {
+            $scope.contacts = result;
         });
   	}
 }
