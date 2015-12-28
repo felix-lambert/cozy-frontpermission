@@ -61,8 +61,7 @@ function HomeAngCtrl($scope, $injector) {
                 xhr.send();
             } else {
                 console.log("Weird intent, cannot handle it", intent);
-                window.onerror("Error handling intent: " + intent, \
-                    "MainRouter.initialize", null, null, \
+                window.onerror("Error handling intent: " + intent, "MainRouter.initialize", null, null,
                     new Error()
                 );
             }
