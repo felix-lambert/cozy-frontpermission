@@ -41,11 +41,6 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
                     new Error()
                 );
             }
-        }, false);
-        $scope.$on('clickEvent', function(e, result) {
-            console.log('clickEvent');
-            console.log(result);
-            vm.contacts = result;
-        });
+        }, true);
   	}
 }
