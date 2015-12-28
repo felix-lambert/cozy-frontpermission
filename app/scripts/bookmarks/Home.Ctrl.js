@@ -11,7 +11,6 @@ function HomeAngCtrl($scope, $injector) {
   		console.log('Get contact');
   		window.parent.postMessage({
   			action: 'getToken',
-            id: app.get 'id',
             name: "frontpermission"
   		}, '*');
 
