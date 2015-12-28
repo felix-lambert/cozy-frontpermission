@@ -25,5 +25,8 @@ exports.config = {
         "stylesheets" : {
             "joinTo": {'css/app.css': /^app/}
         }
+    },
+    "paths": {
+        "public": "."
     }
 };
