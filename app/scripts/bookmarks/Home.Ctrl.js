@@ -46,6 +46,8 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
             }
         }, false);
         $rootScope.$on('clickEvent', function(e, result) {
+            console.log('clickEvent');
+            console.log(result);
             $scope.contacts = result;
         });
   	}
