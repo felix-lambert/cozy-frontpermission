@@ -48,6 +48,7 @@ function HomeAngCtrl($scope, $injector) {
                 xhr.onload = function() {
                     console.log('onload');
                     console.log(xhr.response);
+                    $scope.contacts = xhr.response;
                 }
                 xhr.onerror = function(e) {
                     err = "Request failed : #{e.target.status}";
