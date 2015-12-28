@@ -4,6 +4,9 @@ HomeAngCtrl.$inject = ['$scope', '$injector'];
 
 function HomeAngCtrl($scope, $injector) {
 
+	var vm        = this;
+	vm.getContact = getContact;
+
   	function getContact() {
   		window.parent.postMessage({
   			action: 'getToken',
