@@ -4,7 +4,7 @@ angular.module('Bookmarks', [
 ]).config(appConfig);
 
 var routeObject = {
-  '': {
+  '/': {
     templateUrl: 'partials/home.html',
     controller: 'HomeAngCtrl',
     controllerAs: 'home'
@@ -18,6 +18,6 @@ function appConfig($httpProvider, $routeProvider) {
     $routeProvider.when(path, routeObject[path]);
   }
   $routeProvider.otherwise({
-    redirectTo: ''
+    redirectTo: '/'
   });
 }
