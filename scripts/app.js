@@ -48,7 +48,7 @@ function HomeAngCtrl($scope, $injector) {
                 xhr.open('POST', url, true);
                 xhr.onload = function() {
                     console.log('onload');
-                    console.log xhr.response;
+                    console.log(xhr.response);
                 }
                 xhr.onerror = function(e) {
                     err = "Request failed : #{e.target.status}";
