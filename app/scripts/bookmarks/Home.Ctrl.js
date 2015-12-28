@@ -31,7 +31,7 @@ function HomeAngCtrl($scope, $injector) {
                     err = "Request failed : #{e.target.status}";
                     console.log(err);
                 }
-                xhr.setRequestHeader 'Content-Type', 'application/json';
+                xhr.setRequestHeader('Content-Type', 'application/json');
                 token = btoa("frontpermission":intent.token);
                 authorization = "Basic " + token;
                 xhr.setRequestHeader("Authorization", authorization);
