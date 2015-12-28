@@ -23,7 +23,8 @@ function HomeAngCtrl($scope, $injector) {
                 xhr = new XMLHttpRequest();
                 xhr.open('POST', url, true);
                 xhr.onload = function() {
-                    console.log('onload');
+
+                    $rootScope.$broadcast('clickEvent', xhr.response);
                     console.log(xhr.response);
                     $scope.contacts = xhr.response;
                     console.log('____response_____________')
@@ -44,6 +45,10 @@ function HomeAngCtrl($scope, $injector) {
                 );
             }
         }, false);
-        console.log($scope.contacts);
+        $rootScope.$on('clickEvent', function(a, b) {
+            //a,b - event object details
+            console.log(a);
+            console.log(b);
+        });
   	}
 }
