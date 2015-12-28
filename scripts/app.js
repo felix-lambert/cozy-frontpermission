@@ -37,8 +37,7 @@ function HomeAngCtrl($scope, $injector) {
             name: "frontpermission"
   		}, '*');
 
-		iframeWin = document.getElementById("frontpermission-frame").contentWindow;
-        iframeWin.addEventListener("message", function(event) {
+        window.addEventListener("message", function(event) {
         	console.log(event);
         	intent = event.data;
             if (intent.token) {
