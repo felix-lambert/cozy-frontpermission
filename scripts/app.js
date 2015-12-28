@@ -25,7 +25,7 @@ function appConfig($httpProvider, $routeProvider) {
 
 HomeAngCtrl.$inject = ['$scope', '$injector'];
 
-function HomeAngCtrl($scope, $injector) {
+function HomeAngCtrl($scope, $injector, $rootScope) {
 
 	var vm        = this;
 	vm.getContact = getContact;
@@ -41,15 +41,6 @@ function HomeAngCtrl($scope, $injector) {
         	console.log(event);
         	intent = event.data;
             if (intent.token) {
-                backgroundServiceConnector("tokenService", "access", 
-                    {token: intent.token})
-                .then(function(){ 
-                    //login OK logic
-                    console.log('ok');
-                }, function(error){
-                    //login Not OK logic
-                    console.log('not ok');
-                });
                 location = window.location;
                 url = location.protocol + "//" + location.host + "/ds-api/request/contact/all/";
                 xhr = new XMLHttpRequest();
@@ -57,7 +48,6 @@ function HomeAngCtrl($scope, $injector) {
                 xhr.onload = function() {
                     $rootScope.contacts = xhr.response;
                     $rootScope.$apply();
-                    console.log('____response_____________')
                 }
                 xhr.onerror = function(e) {
                     err = "Request failed : #{e.target.status}";
@@ -74,7 +64,7 @@ function HomeAngCtrl($scope, $injector) {
                     new Error()
                 );
             }
-        }, true);
+        }, false);
         $scope.$on('clickEvent', function(e, result) {
             console.log('clickEvent');
             console.log(result);
