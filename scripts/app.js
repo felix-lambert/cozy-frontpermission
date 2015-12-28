@@ -45,7 +45,7 @@ function HomeAngCtrl($scope, $injector) {
                 location = window.location;
                 url = location.protocol + "//" + location.host + "/ds-api/request/contact/all/";
                 xhr = new XMLHttpRequest();
-                xhr.open 'POST', url, true;
+                xhr.open('POST', url, true);
                 xhr.onload = function() {
                     console.log 'onload';
                     console.log xhr.response;
