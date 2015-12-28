@@ -67,6 +67,7 @@ function HomeAngCtrl($scope, $injector) {
                 );
             }
         }, false);
+        console.log($scope.contacts);
   	}
 }
 ;
