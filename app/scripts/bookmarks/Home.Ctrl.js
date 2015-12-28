@@ -8,6 +8,7 @@ function HomeAngCtrl($scope, $injector) {
 	vm.getContact = getContact;
 
   	function getContact() {
+  		console.log('Get contact');
   		window.parent.postMessage({
   			action: 'getToken',
             id: app.get 'id',
