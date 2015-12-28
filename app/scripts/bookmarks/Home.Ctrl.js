@@ -1,8 +1,8 @@
 angular.module('Bookmarks').controller('HomeAngCtrl', HomeAngCtrl);
 
-HomeAngCtrl.$inject = ['$scope', '$injector', '$rootScope'];
+HomeAngCtrl.$inject = ['$scope', '$injector'];
 
-function HomeAngCtrl($scope, $injector, $rootScope) {
+function HomeAngCtrl($scope, $injector) {
 
 	var vm        = this;
 	vm.getContact = getContact;
@@ -18,13 +18,22 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
         	console.log(event);
         	intent = event.data;
             if (intent.token) {
+                backgroundServiceConnector("tokenService", "access", 
+                    {token: intent.token})
+                .then(function(){ 
+                    //login OK logic
+                    console.log('ok');
+                }, function(error){
+                    //login Not OK logic
+                    console.log('not ok');
+                });
                 location = window.location;
                 url = location.protocol + "//" + location.host + "/ds-api/request/contact/all/";
                 xhr = new XMLHttpRequest();
                 xhr.open('POST', url, true);
                 xhr.onload = function() {
-
-                    $scope.$broadcast('clickEvent', xhr.response);
+                    $rootScope.contacts = xhr.response;
+                    $rootScope.$apply();
                     console.log('____response_____________')
                 }
                 xhr.onerror = function(e) {
@@ -42,7 +51,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
                     new Error()
                 );
             }
-        }, false);
+        }, true);
         $scope.$on('clickEvent', function(e, result) {
             console.log('clickEvent');
             console.log(result);
