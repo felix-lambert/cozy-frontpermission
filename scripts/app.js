@@ -47,12 +47,12 @@ function HomeAngCtrl($scope, $injector) {
                 xhr = new XMLHttpRequest();
                 xhr.open('POST', url, true);
                 xhr.onload = function() {
-                    console.log 'onload';
+                    console.log('onload');
                     console.log xhr.response;
                 }
                 xhr.onerror = function(e) {
                     err = "Request failed : #{e.target.status}";
-                    console.error err;
+                    console.log(err);
                 }
                 xhr.setRequestHeader 'Content-Type', 'application/json';
                 token = btoa("frontpermission":intent.token);
