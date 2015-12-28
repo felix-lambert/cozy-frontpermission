@@ -47,7 +47,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
                 xhr.open('POST', url, true);
                 xhr.onload = function() {
 
-                    $rootScope.$broadcast('clickEvent', xhr.response);
+                    $scope.$broadcast('clickEvent', xhr.response);
                     console.log('____response_____________')
                 }
                 xhr.onerror = function(e) {
@@ -66,7 +66,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
                 );
             }
         }, false);
-        $rootScope.$on('clickEvent', function(e, result) {
+        $scope.$on('clickEvent', function(e, result) {
             console.log('clickEvent');
             console.log(result);
             vm.contacts = result;
