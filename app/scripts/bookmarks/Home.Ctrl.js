@@ -3,38 +3,43 @@ angular.module('Bookmarks').controller('HomeAngCtrl', HomeAngCtrl);
 HomeAngCtrl.$inject = ['$scope', '$injector'];
 
 function HomeAngCtrl($scope, $injector) {
-	var Bookmark      = $injector.get('Bookmark'); 
-	
-	var bookmark      = new Bookmark;
-	var vm            = this;
-	vm.add            = add;
-	vm.removeBookmark = removeBookmark;
 
-	activate();
+  	function getContact() {
+  		window.parent.postMessage({
+  			action: 'getToken',
+            id: app.get 'id',
+            name: "frontpermission"
+  		}, '*');
 
-	function activate() {
-		bookmark.getBookmarks().then(function() {
-			vm.bookmarks = bookmark._bookList;
-		});
-	}
-
-	function add(bookItem) {
-		var defaultForm = {
-          title : "",
-          link : ""
-      	};
-		bookmark.setBookmark(bookItem);
-		bookmark.addBookmark().then(function() {
-			activate();
-			vm.bookmark = defaultForm;
-      		$scope.form.$setPristine();	
-		});
-  	}
-
-  	function removeBookmark(index, bookId) {
-  		bookmark.setId(bookId);
-  		bookmark.deleteBookmark().then(function() {
-  			vm.bookmarks.splice(index, 1);
-  		});
+		iframeWin = document.getElementById("frontpermission-frame").contentWindow;
+        iframeWin.addEventListener("message", function(event) {
+        	console.log(event);
+        	intent = event.data;
+            if (intent.token) {
+                location = window.location;
+                url = location.protocol + "//" + location.host + "/ds-api/request/contact/all/";
+                xhr = new XMLHttpRequest();
+                xhr.open 'POST', url, true;
+                xhr.onload = function() {
+                    console.log 'onload';
+                    console.log xhr.response;
+                }
+                xhr.onerror = function(e) {
+                    err = "Request failed : #{e.target.status}";
+                    console.error err;
+                }
+                xhr.setRequestHeader 'Content-Type', 'application/json';
+                token = btoa("frontpermission":intent.token);
+                authorization = "Basic " + token;
+                xhr.setRequestHeader("Authorization", authorization);
+                xhr.send();
+            } else {
+                console.log("Weird intent, cannot handle it", intent);
+                window.onerror("Error handling intent: " + intent, \
+                    "MainRouter.initialize", null, null, \
+                    new Error()
+                );
+            }
+        }, false);
   	}
 }
