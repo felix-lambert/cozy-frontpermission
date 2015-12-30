@@ -1,5 +1,3 @@
-var cozydb = require('cozydb-browser');
-
 angular.module('Bookmarks').controller('HomeAngCtrl', HomeAngCtrl);
 
 
@@ -11,7 +9,8 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	vm.getContact = getContact;
 
   	function getContact() {
-  		console.log('_____________Get contact_____________');
+  	     var cozydb = require('cozydb-browser');
+    	console.log('_____________Get contact_____________');
         cozydb.escape();
     }
 }
