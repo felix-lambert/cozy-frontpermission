@@ -18,7 +18,7 @@ function appConfig($httpProvider, $routeProvider) {
     console.log(path);
     $routeProvider.when(path, routeObject[path]);
   }
-  // $routeProvider.otherwise({
-  //   redirectTo: '/'
-  // });
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
 }
