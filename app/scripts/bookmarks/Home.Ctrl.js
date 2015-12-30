@@ -11,7 +11,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	vm.getContact = getContact;
 
   	function getContact() {
-  		console.log('Get contact');
+  		console.log('_____________Get contact_____________');
         cozydb.escape();
     }
 }
