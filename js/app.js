@@ -1,22 +1,10 @@
-/**
- * loads sub modules and wraps them up into the main module
- * this should be used for top-level module definitions only
- */
-define([
-    'angular',
-    'angular-route',
-    './controllers/index',
-    './directives/index',
-    './filters/index',
-    './services/index'
-], function (angular) {
-    'use strict';
+define([],function(){
+  function config($routeProvider) {
+    $routeProvider.when('/home', {templateUrl: 'templates/home.html', controller: 'ideasHomeController'})
+      .when('/details/:id',{templateUrl:'templates/ideaDetails.html', controller:'ideaDetailsController'})
+      .otherwise({redirectTo: '/home'});
+  }
+  config.$inject=['$routeProvider'];
 
-    return angular.module('app', [
-        'app.controllers',
-        'app.directives',
-        'app.filters',
-        'app.services',
-        'ngRoute'
-    ]);
+  return config;
 });
