@@ -34,13 +34,10 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 
   	function getContact() {
     	console.log('_____________Get contact_____________');
-            window.parent.postMessage({
-	        action: 'getToken',
-		            name: "frontpermission"
-		      }, '*');
+        window.parent.postMessage({action: 'getToken'}, '*');
 
 	      window.addEventListener("message", function(event) {
-	        console.log(event);
+	      	
 	        intent = event.data;
 	          if (intent.token) {
 	              location = window.location;
