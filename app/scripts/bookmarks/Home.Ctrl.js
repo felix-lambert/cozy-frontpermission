@@ -9,7 +9,6 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	vm.getContact = getContact;
 
   	function getContact() {
-  	     var cozydb = require('cozydb-browser');
     	console.log('_____________Get contact_____________');
             window.parent.postMessage({
 	        action: 'getToken',
