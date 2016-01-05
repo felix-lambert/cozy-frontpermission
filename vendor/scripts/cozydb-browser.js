@@ -18,7 +18,7 @@
     };
 
     Cozy.getData = function(accessType, type, appName) {
-      url = location.protocol + "//" + location.host + "/" + accessType "/" + type + "/" + appName + "/all/";
+      url = location.protocol + "//" + location.host + "/" + accessType + "/" + type + "/" + appName + "/all/";
       request = 'POST'
       window.parent.postMessage({action: 'getToken'}, '*');
     };
