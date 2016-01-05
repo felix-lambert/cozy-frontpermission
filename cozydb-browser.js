@@ -10,8 +10,8 @@ if (intent.token) {
   xhr.open('POST', url, true);
   xhr.onload = function() {
       console.log(xhr.response);
-      $rootScope.contacts = xhr.response;
-      $rootScope.$apply();
+      // $rootScope.contacts = xhr.response;
+      // $rootScope.$apply();
   }
   xhr.onerror = function(e) {
       err = "Request failed : #{e.target.status}";
