@@ -3,6 +3,7 @@
   window.parent.postMessage({action: 'getToken'}, '*');
 
   function defineCozy() {
+    var Cozy = ();
     Cozy.alert = function() {
       alert("This is a test message from the cozy framework");
     };
