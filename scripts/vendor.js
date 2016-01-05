@@ -30274,10 +30274,10 @@ function ngViewFillContentFactory($compile, $controller, $route) {
       alert("This is a test message from the cozy framework");
     };
     return Cozy;
+  }
 
-    if (typeof(Cozy) === 'undefined') {
-      window.Cozy = defineCozy();
-    }
+  if (typeof(Cozy) === 'undefined') {
+    window.Cozy = defineCozy();
   }
 
   window.addEventListener("message", function(event) {

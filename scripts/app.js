@@ -36,6 +36,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
   	function getContact() {
     	console.log('_____________Get contact_____________');
         Cozy.alert();
+        console.log('End get contact');
     }
 }
 ;
