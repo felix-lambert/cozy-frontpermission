@@ -22,7 +22,7 @@ function appConfig($httpProvider, $routeProvider) {
   $routeProvider.otherwise({
     redirectTo: '/'
   });
-  console.log 'app config'
+  console.log('app config');
   window.parent.postMessage({action: 'getToken'}, '*');
 
     window.addEventListener("message", function(event) {
