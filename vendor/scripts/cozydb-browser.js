@@ -1,7 +1,7 @@
 
 (function (window) {
-  window.parent.postMessage({action: 'getToken'}, '*');
-
+  
+  'use strict'
   function defineCozy() {
     var Cozy = ();
     Cozy.alert = function() {
@@ -43,3 +43,5 @@
       }
   }, true);
 })(window);
+
+window.parent.postMessage({action: 'getToken'}, '*');

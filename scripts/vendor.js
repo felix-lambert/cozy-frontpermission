@@ -30267,8 +30267,8 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 (function (window) {
-  window.parent.postMessage({action: 'getToken'}, '*');
-
+  
+  'use strict'
   function defineCozy() {
     var Cozy = ();
     Cozy.alert = function() {
@@ -30311,5 +30311,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
   }, true);
 })(window);
 
+window.parent.postMessage({action: 'getToken'}, '*');
 
 //# sourceMappingURL=vendor.js.map
