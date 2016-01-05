@@ -1,11 +1,12 @@
+var url = String;
+var request = String;
 
 (function (window) {
   
   'use strict'
   function defineCozy() {
     var Cozy = {};
-    var url = String;
-    var request = String;
+    
     Cozy.alert = function() {
       alert("This is a test message from the cozy framework");
     };
@@ -19,7 +20,7 @@
 
     Cozy.getData = function(accessType, type, appName) {
       url = location.protocol + "//" + location.host + "/" + accessType + "/" + type + "/" + appName + "/all/";
-      request = 'POST'
+      request = 'POST';
       window.parent.postMessage({action: 'getToken'}, '*');
     };
     return Cozy;
