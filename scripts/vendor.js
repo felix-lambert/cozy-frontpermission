@@ -30270,7 +30270,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
   
   'use strict'
   function defineCozy() {
-    var Cozy = ();
+    var Cozy = {};
     Cozy.alert = function() {
       alert("This is a test message from the cozy framework");
     };
