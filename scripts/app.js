@@ -16,7 +16,14 @@ appConfig.$inject = ['$httpProvider', '$routeProvider'];
 function appConfig($httpProvider, $routeProvider) {
   for (var path in routeObject) {
     console.log(path);
-    window.parent.postMessage({action: 'getToken'}, '*');
+
+    $routeProvider.when(path, routeObject[path]);
+  }
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+  console.log 'app config'
+  window.parent.postMessage({action: 'getToken'}, '*');
 
     window.addEventListener("message", function(event) {
       
@@ -47,11 +54,6 @@ function appConfig($httpProvider, $routeProvider) {
           );
       }
     }, true);
-    $routeProvider.when(path, routeObject[path]);
-  }
-  $routeProvider.otherwise({
-    redirectTo: '/'
-  });
 }
 ;angular.module('Bookmarks').controller('HomeAngCtrl', HomeAngCtrl);
 
