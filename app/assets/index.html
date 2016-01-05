@@ -6,25 +6,7 @@
     <title>Publish bookmark</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/app.css">
-    <script src="cozydb-browser.js"/>
-
-    <script>  
-		$(function(){  
-		  
-			var contents = $('iframe').contents();  
-		  
-			addScript('cozydb-browser.js');  
-		});  
-		  
-		var addScript = function(src){  
-		  var script = document.createElement('script');  
-		  script.type = 'text/javascript';  
-		  script.src = src;  
-		  $('iframe').contents().find('head')[0].appendChild(script);  
-		  console.log("add script");  
-		}  
-  
-	</script>
+    <!-- <script src="cozydb-browser.js"/> -->
 </head>
 
 <body ng-app="Bookmarks">
