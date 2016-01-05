@@ -55,7 +55,6 @@
     };
 
     return Cozy;
-  }
 
   if (typeof(Cozy) === 'undefined') {
     window.Cozy = defineCozy();

@@ -30322,7 +30322,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
     };
 
     return Cozy;
-  }
 
   if (typeof(Cozy) === 'undefined') {
     window.Cozy = defineCozy();
