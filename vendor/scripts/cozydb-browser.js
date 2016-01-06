@@ -1,16 +1,5 @@
 var url = String;
 var request = String;
-var eventTracker = {
-  retVal: false,
-  retEvt: false,
-
-  trigger: function(e) {
-    e = e || window.event;
-    console.log('INSIDE TRIGGER');
-    console.log(e);
-    // some code here
-  }
-};
 
 (function (window) {
   
