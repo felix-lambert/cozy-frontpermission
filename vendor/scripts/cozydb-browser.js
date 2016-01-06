@@ -1,13 +1,13 @@
-var url = String;
-var request = String;
-var data = Object;
+
 
 (function (window) {
   
   'use strict'
   function defineCozy() {
     var Cozy = {};
-
+    var url = String;
+    var request = String;
+    var data = Object;
 
     function eventListener(event) {
       var intent = event.data;

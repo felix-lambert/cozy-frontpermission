@@ -30265,16 +30265,16 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-var url = String;
-var request = String;
-var data = Object;
+
 
 (function (window) {
   
   'use strict'
   function defineCozy() {
     var Cozy = {};
-
+    var url = String;
+    var request = String;
+    var data = Object;
 
     function eventListener(event) {
       var intent = event.data;
