@@ -32,10 +32,11 @@ function someFn(event) {
 }
 
 // Bind the event in all browsers
-if ( window.addEventListener ) {
-    window.addEventListener( 'load', someFn, false );
-} else if ( window.attachEvent ) {
-    window.attachEvent( 'onload', someFn );
+if (window.addEventListener) {
+    window.addEventListener("message", someFn, false);
+} else if (window.attachEvent) {
+  console.log("attach event");
+    window.attachEvent('onload', someFn);
 } else {
     window.onload = someFn;
 }
@@ -70,6 +71,7 @@ if ( window.addEventListener ) {
     window.Cozy = defineCozy();
   }
 
+
+
 })(window);
 
-window.addEventListener("message", someFn, false);
