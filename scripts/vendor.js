@@ -30275,7 +30275,9 @@ function ngViewFillContentFactory($compile, $controller, $route) {
     var url = String;
     var request = String;
 
-    function eventListener(event) {
+
+
+    Cozy.eventListenet = function(event) {
       var intent = event.data;
       if (intent.token) {
         location = window.location;
@@ -30322,7 +30324,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
       window.parent.postMessage({action: 'getToken'}, '*');
       console.log('get data');
       console.log(window);
-      window.addEventListener('message', eventListener, false);
+      window.addEventListener('message', Cozy.eventListener, false);
       console.log(window);
       return window;
     };
