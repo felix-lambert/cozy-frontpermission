@@ -30274,7 +30274,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
     var Cozy = {};
     var url = String;
     var request = String;
-    var Cozy.data = Object;
 
     function eventListener(event) {
       var intent = event.data;
