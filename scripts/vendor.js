@@ -30295,8 +30295,8 @@ var data = Object;
             console.log(err);
         }
         xhr.setRequestHeader('Content-Type', 'application/json');
-        token = btoa(intent.appName + ":" + intent.token);
-        authorization = "Basic " + token;
+        var token = btoa(intent.appName + ":" + intent.token);
+        var authorization = "Basic " + token;
         xhr.setRequestHeader("Authorization", authorization);
         xhr.send();
         } else {
