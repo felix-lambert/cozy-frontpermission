@@ -30267,6 +30267,17 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 var url = String;
 var request = String;
+var eventTracker = {
+  retVal: false,
+  retEvt: false,
+
+  trigger: function(e) {
+    e = e || window.event;
+    console.log('INSIDE TRIGGER');
+    console.log(e);
+    // some code here
+  }
+};
 
 (function (window) {
   
@@ -30308,8 +30319,9 @@ window.addEventListener("message", function(event) {
     xhr = new XMLHttpRequest();
     xhr.open(request, url, true);
     xhr.onload = function() {
-        console.log(xhr.response);
-        return (xhr.response);
+      console.log(xhr.response);
+      eventTracker.retVal = true;
+      eventTracker.trigger.call(xhr.response);
         // $rootScope.contacts = xhr.response;
         // $rootScope.$apply();
     }
