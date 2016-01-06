@@ -35,11 +35,7 @@ var eventTracker = {
       request = 'POST';
       window.parent.postMessage({action: 'getToken'}, '*');
       console.log('get data');
-      console.log(window.event);
-      function returnData(res) {
-        console.log(res);
-        return res;
-      }
+      console.log(window);
     };
     return Cozy;
 
