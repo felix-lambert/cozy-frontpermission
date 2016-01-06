@@ -12,7 +12,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
     	console.log('_____________Get contact_____________');
         data = Cozy.getData('ds-api', 'request', 'contact');
         console.log(data);
-        console.log(window);
+        console.log(window.data);
         console.log('End get contact');
     }
 }
