@@ -14,7 +14,7 @@ var request = String;
       if (intent.token) {
         location = window.location;
         
-        xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
         xhr.open(request, url, true);
         return xhr.onload = function() {
           console.log(xhr.response);
