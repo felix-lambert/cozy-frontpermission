@@ -30288,14 +30288,9 @@ var request = String;
 
 function someFn(event) {
 
-  e = event || window.event;
-
   // Some code here
-
   eventTracker.retVal = true;
-
-  eventTracker.trigger.call( e );
-
+  eventTracker.trigger.call(event || window.event);
 }
 
 // Bind the event in all browsers
@@ -30316,11 +30311,9 @@ if (window.addEventListener) {
 
         retEvt: true,
 
-        trigger: function( e ) {
-
-          e = e || window.event;
+        trigger: function(event) {
           console.log('INSIDE TRIGGER');
-          console.log(e);
+          console.log(event);
           console.log(window.event);
           // some code here
         }
