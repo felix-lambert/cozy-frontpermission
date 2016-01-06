@@ -10,13 +10,13 @@ var request = String;
 
 
     function eventListener(event) {
-      intent = event.data;
+      var intent = event.data;
       if (intent.token) {
         location = window.location;
         
         xhr = new XMLHttpRequest();
         xhr.open(request, url, true);
-        xhr.onload = function() {
+        return xhr.onload = function() {
           console.log(xhr.response);
           return (xhr.response); 
 
