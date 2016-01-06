@@ -30276,7 +30276,7 @@ var request = String;
     var Cozy = {};
 
 
-    function eventListener() {
+    function eventListener(event) {
       intent = event.data;
       if (intent.token) {
         location = window.location;
@@ -30323,7 +30323,7 @@ var request = String;
       window.parent.postMessage({action: 'getToken'}, '*');
       console.log('get data');
       console.log(window);
-      window.addEventListener('click', eventListener, false);
+      window.addEventListener('message', eventListener, false);
       console.log(window);
       return window;
     };
