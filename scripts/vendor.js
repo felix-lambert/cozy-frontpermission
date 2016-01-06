@@ -30274,7 +30274,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
     var Cozy = {};
     var url = String;
     var request = String;
-    var data = Object;
+    var Cozy.data = Object;
 
     function eventListener(event) {
       var intent = event.data;
@@ -30285,7 +30285,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
         xhr.open(request, url, true);
         xhr.onload = function() {
           console.log(xhr.response);
-          data = xhr.response;
+          Cozy.data = xhr.response;
 
             // $rootScope.contacts = xhr.response;
             // $rootScope.$apply();
