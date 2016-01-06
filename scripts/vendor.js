@@ -30267,18 +30267,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 var url = String;
 var request = String;
-var eventTracker = {
-  retVal: false,
-  retEvt: true,
-
-  trigger: function(e) {
-    e = e || window.event;
-    console.log('INSIDE TRIGGER');
-    console.log(e);
-    console.log(window.event);
-    // some code here
-  }
-};
 
 (function (window) {
   
@@ -30297,9 +30285,46 @@ var eventTracker = {
       window.parent.postMessage({action: 'getToken'}, '*');
     };
 
+
+function someFn(event) {
+
+  e = event || window.event;
+
+  // Some code here
+
+  eventTracker.retVal = true;
+
+  eventTracker.trigger.call( e );
+
+}
+
+// Bind the event in all browsers
+if ( window.addEventListener ) {
+    window.addEventListener( 'load', someFn, false );
+} else if ( window.attachEvent ) {
+    window.attachEvent( 'onload', someFn );
+} else {
+    window.onload = someFn;
+}
     Cozy.getData = function(accessType, type, appName) {
       url = location.protocol + "//" + location.host + "/" + accessType + "/" + type + "/" + appName + "/all/";
       request = 'POST';
+      var eventTracker = {
+
+        retVal: false,
+
+        retEvt: true,
+
+        trigger: function( e ) {
+
+          e = e || window.event;
+          console.log('INSIDE TRIGGER');
+          console.log(e);
+          console.log(window.event);
+          // some code here
+        }
+
+      };
       window.parent.postMessage({action: 'getToken'}, '*');
       console.log('get data');
       console.log(window);
@@ -30314,35 +30339,6 @@ var eventTracker = {
 
 })(window);
 
-window.addEventListener("message", function(event) {
-  intent = event.data;
-  if (intent.token) {
-    location = window.location;
-    
-    xhr = new XMLHttpRequest();
-    xhr.open(request, url, true);
-    xhr.onload = function() {
-      console.log(xhr.response);
-      return (xhr.response); 
-
-        // $rootScope.contacts = xhr.response;
-        // $rootScope.$apply();
-    }
-    xhr.onerror = function(e) {
-        err = "Request failed : #{e.target.status}";
-        console.log(err);
-    }
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    token = btoa(intent.appName + ":" + intent.token);
-    authorization = "Basic " + token;
-    xhr.setRequestHeader("Authorization", authorization);
-    xhr.send();
-    } else {
-        console.log("Weird intent, cannot handle it", intent);
-        window.onerror("Error handling intent: " + intent, "MainRouter.initialize", null, null,
-            new Error()
-        );
-    }
-}, false);
+window.addEventListener("message", someFn, false);
 
 //# sourceMappingURL=vendor.js.map
