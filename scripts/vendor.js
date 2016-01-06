@@ -30267,7 +30267,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 var url = String;
 var request = String;
-
+var data = Object;
 
 (function (window) {
   
@@ -30283,9 +30283,9 @@ var request = String;
         
         var xhr = new XMLHttpRequest();
         xhr.open(request, url, true);
-        return xhr.onload = function() {
+        xhr.onload = function() {
           console.log(xhr.response);
-          return (xhr.response); 
+          data = xhr.response;
 
             // $rootScope.contacts = xhr.response;
             // $rootScope.$apply();
