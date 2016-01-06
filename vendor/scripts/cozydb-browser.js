@@ -4,6 +4,22 @@ var request = String;
 (function (window) {
   
   'use strict'
+  
+  var eventTracker = {
+
+    retVal: false,
+
+    retEvt: true,
+
+      trigger: function(event) {
+        console.log('INSIDE TRIGGER');
+        console.log(event);
+        console.log(window.event);
+        // some code here
+      }
+
+    };
+
   function defineCozy() {
     var Cozy = {};
     
@@ -18,6 +34,13 @@ var request = String;
       window.parent.postMessage({action: 'getToken'}, '*');
     };
 
+      function someFn(event) {
+
+        // Some code here
+        eventTracker.retVal = true;
+        eventTracker.trigger.call(event || window.event);
+      }
+
 // Bind the event in all browsers
 if (window.addEventListener) {
     window.addEventListener("message", someFn, false);
@@ -30,27 +53,9 @@ if (window.addEventListener) {
     Cozy.getData = function(accessType, type, appName) {
       url = location.protocol + "//" + location.host + "/" + accessType + "/" + type + "/" + appName + "/all/";
       request = 'POST';
-      var eventTracker = {
+      
 
-        retVal: false,
 
-        retEvt: true,
-
-        trigger: function(event) {
-          console.log('INSIDE TRIGGER');
-          console.log(event);
-          console.log(window.event);
-          // some code here
-        }
-
-      };
-
-      function someFn(event) {
-
-        // Some code here
-        eventTracker.retVal = true;
-        eventTracker.trigger.call(event || window.event);
-      }
       window.parent.postMessage({action: 'getToken'}, '*');
       console.log('get data');
       console.log(window);
