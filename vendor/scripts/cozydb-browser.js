@@ -2,12 +2,13 @@ var url = String;
 var request = String;
 var eventTracker = {
   retVal: false,
-  retEvt: false,
+  retEvt: true,
 
   trigger: function(e) {
     e = e || window.event;
     console.log('INSIDE TRIGGER');
     console.log(e);
+    console.log(window.event);
     // some code here
   }
 };
@@ -33,6 +34,8 @@ var eventTracker = {
       url = location.protocol + "//" + location.host + "/" + accessType + "/" + type + "/" + appName + "/all/";
       request = 'POST';
       window.parent.postMessage({action: 'getToken'}, '*');
+      console.log('get data');
+      console.log(window.event);
     };
     return Cozy;
 
@@ -73,4 +76,4 @@ window.addEventListener("message", function(event) {
             new Error()
         );
     }
-}, true);
+}, false);
