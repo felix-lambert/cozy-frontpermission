@@ -18,14 +18,6 @@ var request = String;
       window.parent.postMessage({action: 'getToken'}, '*');
     };
 
-
-function someFn(event) {
-
-  // Some code here
-  eventTracker.retVal = true;
-  eventTracker.trigger.call(event || window.event);
-}
-
 // Bind the event in all browsers
 if (window.addEventListener) {
     window.addEventListener("message", someFn, false);
@@ -52,6 +44,13 @@ if (window.addEventListener) {
         }
 
       };
+
+      function someFn(event) {
+
+        // Some code here
+        eventTracker.retVal = true;
+        eventTracker.trigger.call(event || window.event);
+      }
       window.parent.postMessage({action: 'getToken'}, '*');
       console.log('get data');
       console.log(window);
