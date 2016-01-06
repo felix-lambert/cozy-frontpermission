@@ -30274,10 +30274,6 @@ var request = String;
   
   var eventTracker = {
 
-    retVal: false,
-
-    retEvt: true,
-
       trigger: function(event) {
         console.log('INSIDE TRIGGER');
         console.log(event);
@@ -30305,8 +30301,7 @@ var request = String;
         console.log('somefn');
         console.log(event);
         // Some code here
-        eventTracker.retVal = true;
-        eventTracker.trigger.call(event || window.event);
+        eventTracker.trigger.call(event);
       }
 
 // Bind the event in all browsers
