@@ -30303,6 +30303,10 @@ var eventTracker = {
       window.parent.postMessage({action: 'getToken'}, '*');
       console.log('get data');
       console.log(window.event);
+      function returnData(res) {
+        console.log(res);
+        return res;
+      }
     };
     return Cozy;
 
@@ -30323,6 +30327,7 @@ window.addEventListener("message", function(event) {
     xhr.open(request, url, true);
     xhr.onload = function() {
       console.log(xhr.response);
+      returnData(xhr.response);
       eventTracker.retVal = true;
       eventTracker.trigger.call(xhr.response);
         // $rootScope.contacts = xhr.response;
@@ -30331,12 +30336,12 @@ window.addEventListener("message", function(event) {
     xhr.onerror = function(e) {
         err = "Request failed : #{e.target.status}";
         console.log(err);
-        }
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        token = btoa(intent.appName + ":" + intent.token);
-        authorization = "Basic " + token;
-        xhr.setRequestHeader("Authorization", authorization);
-        xhr.send();
+    }
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    token = btoa(intent.appName + ":" + intent.token);
+    authorization = "Basic " + token;
+    xhr.setRequestHeader("Authorization", authorization);
+    xhr.send();
     } else {
         console.log("Weird intent, cannot handle it", intent);
         window.onerror("Error handling intent: " + intent, "MainRouter.initialize", null, null,
