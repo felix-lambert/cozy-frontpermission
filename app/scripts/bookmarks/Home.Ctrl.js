@@ -10,7 +10,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 
   	function getContact() {
     	console.log('_____________Get contact_____________');
-        indow.parent.postMessage({action: 'getToken'}, '*');
+        window.parent.postMessage({action: 'getToken'}, '*');
 
 	      window.addEventListener("message", function(event) {
 	      	
