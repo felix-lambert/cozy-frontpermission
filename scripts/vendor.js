@@ -30301,7 +30301,7 @@ var request = String;
         console.log('somefn');
         console.log(event);
         // Some code here
-        eventTracker.trigger.call(event);
+        return event;
       }
 
 // Bind the event in all browsers
