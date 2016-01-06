@@ -14,8 +14,7 @@ exports.config = {
                 "before": [
                   'vendor/scripts/angular.js',
                   'vendor/scripts/angular-resource.js',
-                  'vendor/scripts/angular-route.js',
-                  'vendor/scripts/cozydb-browser.js'
+                  'vendor/scripts/angular-route.js'
                 ]
             }
         },
