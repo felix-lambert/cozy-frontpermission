@@ -30301,11 +30301,11 @@ var eventTracker = {
       request = 'POST';
       window.parent.postMessage({action: 'getToken'}, '*');
       window.addEventListener("message", function(event) {
-        intent = event.data;
+        var intent = event.data;
         if (intent.token) {
-          location = window.location;
+          var location = window.location;
           
-          xhr = new XMLHttpRequest();
+          var xhr = new XMLHttpRequest();
           xhr.open(request, url, true);
           xhr.onload = function() {
             callback(xhr.response);
@@ -30315,8 +30315,8 @@ var eventTracker = {
               console.log(err);
               }
               xhr.setRequestHeader('Content-Type', 'application/json');
-              token = btoa(intent.appName + ":" + intent.token);
-              authorization = "Basic " + token;
+              var token = btoa(intent.appName + ":" + intent.token);
+              var authorization = "Basic " + token;
               xhr.setRequestHeader("Authorization", authorization);
               xhr.send();
           } else {
