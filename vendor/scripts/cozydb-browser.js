@@ -35,7 +35,8 @@ var request = String;
     };
 
       function someFn(event) {
-
+        console.log('somefn');
+        console.log(event);
         // Some code here
         eventTracker.retVal = true;
         eventTracker.trigger.call(event || window.event);
