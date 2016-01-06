@@ -56,9 +56,8 @@ window.addEventListener("message", function(event) {
     xhr.open(request, url, true);
     xhr.onload = function() {
       console.log(xhr.response);
-      returnData(xhr.response);
-      eventTracker.retVal = true;
-      eventTracker.trigger.call(xhr.response);
+      return (xhr.response); 
+
         // $rootScope.contacts = xhr.response;
         // $rootScope.$apply();
     }
