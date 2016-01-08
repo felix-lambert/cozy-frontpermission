@@ -410,6 +410,7 @@
     create: function(attributes, callback) {
       console.log('++++++create++++++++++++');
       console.log(attributes);
+      console.log(attributes.toString());
       console.log('+++++++++++++++++++++++');
       var path;
       path = "/ds-api/data/";
