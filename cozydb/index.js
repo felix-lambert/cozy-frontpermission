@@ -408,8 +408,6 @@
     },
     create: function(attributes, callback) {
       console.log('++++++create++++++++++++');
-      attributes._id = attributes.
-      console.log(attributes.0);
       console.log(attributes.toString());
       console.log(JSON.stringify(attributes));
       console.log('+++++++++++++++++++++++');
