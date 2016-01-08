@@ -1101,6 +1101,9 @@
           for (k in attributes) {
             v = attributes[k];
             data[k] = v;
+            console.log("ùùùùùùùùùùùùùùùùùùùùùùùùùù");
+            console.log(data);
+            console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
           }
           return callback(null, new _this(data));
         };
