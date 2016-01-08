@@ -174,6 +174,8 @@
       this.listAll = __bind(this.listAll, this);
       this.find = __bind(this.find, this);
       this.fetch = __bind(this.fetch, this);
+      console.log('CONTROLLER');
+      console.log(options);
       this.model = options.model || (function() {
         throw new Error('model needed');
       })();
@@ -765,11 +767,17 @@
   };
 
   module.exports.getModel = function(name, schema) {
+    console.log('GET MODEL');
+    console.log(name);
+    console.log(schema);
     var ClassFromGetModel, klass;
     klass = ClassFromGetModel = (function(_super) {
+      console.log('************************');
       __extends(ClassFromGetModel, _super);
 
       function ClassFromGetModel() {
+        console.log('ClassFromGetModel');
+        console.log(arguments);
         return ClassFromGetModel.__super__.constructor.apply(this, arguments);
       }
 
@@ -779,10 +787,13 @@
 
     })(CozyModel);
     klass.displayName = klass.name = name;
+    console.log('klass.displayName');
+
     klass.toString = function() {
       return "" + name + "Constructor";
     };
     klass.docType = name;
+    console.log(klass);
     return klass;
   };
 
