@@ -1087,7 +1087,8 @@
       console.log(data);
       data.docType = this.getDocType();
       data = this.cast(data);
-
+      console.log('THIS.CAST');
+      console.log(data);
       return this.adapter.create(data, (function(_this) {
         return function(err, attributes) {
           var k, v;
