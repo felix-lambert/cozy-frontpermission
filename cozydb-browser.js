@@ -1,22 +1,3 @@
-var url = String;
-var request = String;
-
-(function (window) {
-  
-  'use strict'
-  function defineCozy() {
-    var Cozy = {};
-    
-    Cozy.alert = function() {
-      alert("This is a test message from the cozy framework");
-    };
-
-    Cozy.checkExists = function(id) {
-      
-      url = location.protocol + "//" + location.host + "/data/exist/" + id;
-      request = 'GET';
-      window.parent.postMessage({action: 'getToken'}, '*');
-    };
 
     Cozy.getData = function(accessType, type, appName, callback) {
       url = location.protocol + "//" + location.host + "/" + accessType + "/" + type + "/" + appName + "/all/";
@@ -33,9 +14,9 @@ var request = String;
             callback(xhr.response);
           }
           xhr.onerror = function(e) {
-              err = "Request failed : #{e.target.status}";
-              console.log(err);
-              }
+            err = "Request failed : #{e.target.status}";
+            console.log(err);
+          }
               xhr.setRequestHeader('Content-Type', 'application/json');
               var token = btoa(intent.appName + ":" + intent.token);
               var authorization = "Basic " + token;
