@@ -55,6 +55,9 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
             if (err) {
                 alert(err);
             } else {
+            	console.log('///////CONTACT/////////////');
+            	console.log(contact);
+            	console.log('//////////////////////////');
                 $scope.contact;
             }
         });
