@@ -1400,9 +1400,9 @@
   })();
 
   module.exports = Model;
-
+  console.log('_____________________CAST OBJECT_________________________');
   castObject = require('./utils/type_checking').castObject;
-
+  console.log('_________________________________________________________');
 }).call(this);
 
 }).call(this,require('_process'))
