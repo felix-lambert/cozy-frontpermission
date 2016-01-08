@@ -1084,6 +1084,7 @@
 
     Model.create = function(data, callback) {
       console.log('CREATE MODEL');
+      console.log(data);
       data.docType = this.getDocType();
       data = this.cast(data);
 
