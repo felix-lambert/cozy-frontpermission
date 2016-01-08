@@ -435,6 +435,7 @@
         callback(err);
       }
       xhr.send(JSON.stringify(attributes));
+      
     },
     save: function(id, data, callback) {
       return client.put("data/" + id + "/", data, function(error, response, body) {
