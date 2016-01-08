@@ -664,6 +664,7 @@
 
     CozyBackedModel.cast = function() {
       console.log('CozyBackedModel');
+      console.log(this.schema);
       if (!this.__addedToSchema) {
         this.__addedToSchema = true;
         this.schema._id = String;
@@ -674,6 +675,7 @@
         this.schema.binaries = Object;
       }
       console.log('CozyBackedModel.__super__.constructor.cast.apply');
+      console.log(this.schema);
       return CozyBackedModel.__super__.constructor.cast.apply(this, arguments);
     };
 
