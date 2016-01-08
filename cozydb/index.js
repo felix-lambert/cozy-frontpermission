@@ -677,7 +677,7 @@
       console.log('CozyBackedModel.__super__.constructor.cast.apply');
       console.log(this.schema);
       console.log(arguments);
-      console.log(argument[0]);
+      console.log(arguments[0]);
       return CozyBackedModel.__super__.constructor.cast.apply(this, arguments);
     };
 
