@@ -1252,6 +1252,10 @@
         target = {};
       }
       console.log('_________________________CAST__________________');
+      console.log(attributes);
+      console.log(this.schema);
+      console.log(target);
+      console.log(this.name);
       return castObject(attributes, this.schema, target, this.name);
     };
 
