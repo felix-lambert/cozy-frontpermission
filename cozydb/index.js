@@ -1280,6 +1280,8 @@
       if (attributes == null) {
         attributes = {};
       }
+      console.log('___________MODEL___________');
+      console.log(attributes);
       this.constructor.cast(attributes, this);
       if (attributes._id) {
         if (this.id == null) {
@@ -1775,6 +1777,7 @@
     PouchdbBackedModel.requestsAdapter = pouchdbRequestsAdapter;
 
     PouchdbBackedModel.cast = function() {
+      console.log('PouchdbBackedModel');
       if (!this.__addedToSchema) {
         this.__addedToSchema = true;
         this.schema._id = String;
@@ -1784,6 +1787,7 @@
         this.schema.docType = String;
         this.schema.binaries = Object;
       }
+      console.log('PouchdbBackedModel super cast');
       return PouchdbBackedModel.__super__.constructor.cast.apply(this, arguments);
     };
 
@@ -2033,6 +2037,7 @@
         out[key] = pvalue;
       }
     } else if (type.prototype instanceof Model) {
+      console.log('type.prototype instanceof Model');
       out = type.cast(value);
     } else if (_isArray(type)) {
       if (!type[0]) {
