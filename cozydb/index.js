@@ -409,20 +409,12 @@
       console.log('create');
       console.log(attributes);
       var path;
-      path = "data/";
-      if (attributes.id != null) {
-        console.log('attributes id is null');
-        path += "" + attributes.id + "/";
-        delete attributes.id;
-        return callback(new Error('cant create an object with a set id'));
-      }
-      var path;
       path = "/ds-api/data/";
       if (attributes.id != null) {
         path += "" + attributes.id + "/";
         delete attributes.id;
         return callback(new Error('cant create an object with a set id'));
-      } 
+      }
       var location = window.location;
       var xhr = new XMLHttpRequest();
       xhr.open("POST", path, true);
@@ -435,7 +427,7 @@
         callback(err);
       }
       xhr.send(JSON.stringify(attributes));
-      
+
     },
     save: function(id, data, callback) {
       return client.put("data/" + id + "/", data, function(error, response, body) {
