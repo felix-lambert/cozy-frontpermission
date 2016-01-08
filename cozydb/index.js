@@ -175,7 +175,6 @@
       this.find = __bind(this.find, this);
       this.fetch = __bind(this.fetch, this);
       console.log('CONTROLLER');
-      console.log(options);
       this.model = options.model || (function() {
         throw new Error('model needed');
       })();
@@ -409,7 +408,8 @@
     },
     create: function(attributes, callback) {
       console.log('++++++create++++++++++++');
-      console.log(attributes);
+      attributes._id = attributes.
+      console.log(attributes.0);
       console.log(attributes.toString());
       console.log(JSON.stringify(attributes));
       console.log('+++++++++++++++++++++++');
@@ -422,9 +422,9 @@
       }
       var location = window.location;
       var xhr = new XMLHttpRequest();
+      console.log(xhr);
       xhr.open("POST", path, true);
       xhr.onload = function() {
-        xhr.response.id = xhr.response._id;
         callback(null, xhr.response);
       }
       xhr.onerror = function(e) {
@@ -434,7 +434,7 @@
       console.log('attributes of send');
       console.log(attributes);
       xhr.send(attributes);
-
+      console.log(xhr);
     },
     save: function(id, data, callback) {
       return client.put("data/" + id + "/", data, function(error, response, body) {
@@ -676,7 +676,6 @@
         this.schema.binaries = Object;
       }
       console.log('CozyBackedModel.__super__.constructor.cast.apply');
-      console.log(arguments);
       return CozyBackedModel.__super__.constructor.cast.apply(this, arguments);
     };
 
@@ -716,8 +715,6 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 
-  console.log('************************************');
-  console.log(CozyModel);
   console.log('************************************');
   log = require('printit')({
     date: true,
@@ -778,8 +775,6 @@
 
   module.exports.getModel = function(name, schema) {
     console.log('GET MODEL');
-    console.log(name);
-    console.log(schema);
     var ClassFromGetModel, klass;
     klass = ClassFromGetModel = (function(_super) {
       console.log('************************');
@@ -787,7 +782,6 @@
 
       function ClassFromGetModel() {
         console.log('ClassFromGetModel');
-        console.log(arguments);
         return ClassFromGetModel.__super__.constructor.apply(this, arguments);
       }
 
@@ -803,7 +797,6 @@
       return "" + name + "Constructor";
     };
     klass.docType = name;
-    console.log(klass);
     return klass;
   };
 
@@ -816,7 +809,6 @@
       PouchModel = require('./pouchmodel');
       module.exports.CozyModel = CozyModel = PouchModel;
       console.log('MAYBE SET UP POUCH');
-      console.log(CozyModel);
       if (options.db) {
         return PouchModel.db = options.db;
       } else {
@@ -845,8 +837,6 @@
       file = _ref[_i];
       try {
         model = require(path.join(modelsPath, file));
-        console.log('GET REQUEST');
-        console.log(CozyModel);
         if ((model != null ? model.prototype : void 0) instanceof CozyModel) {
           models.push(model);
         }
@@ -1097,10 +1087,6 @@
     Model.create = function(data, callback) {
       console.log('CREATE MODEL');
       data.docType = this.getDocType();
-      console.log('data.docType');
-      console.log(data.docType);
-      console.log('cast data');
-      console.log(data);
       data = this.cast(data);
 
       return this.adapter.create(data, (function(_this) {
@@ -1285,11 +1271,6 @@
         target = {};
       }
       console.log('_________________________CAST__________________');
-      console.log(attributes);
-      console.log(this.schema);
-      console.log(target);
-      console.log(this.name);
-      console.log('/////////////////////////////////////////')
       return castObject(attributes, this.schema, target, this.name);
     };
 
@@ -1314,7 +1295,6 @@
         attributes = {};
       }
       console.log('___________MODEL___________');
-      console.log(attributes);
       this.constructor.cast(attributes, this);
       if (attributes._id) {
         if (this.id == null) {
@@ -2100,10 +2080,6 @@
 
   exports.castObject = castObject = function(raw, schema, target, name) {
     console.log("castObject");
-    console.log(raw);
-    console.log(schema);
-    console.log(target);
-    console.log(name);
     var handled, prop, typeOrOptions, value;
     if (target == null) {
       target = {};
