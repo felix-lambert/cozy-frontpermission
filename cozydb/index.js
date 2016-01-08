@@ -658,6 +658,7 @@
     CozyBackedModel.requestsAdapter = cozyRequestsAdapter;
 
     CozyBackedModel.cast = function() {
+      console.log('CozyBackedModel');
       if (!this.__addedToSchema) {
         this.__addedToSchema = true;
         this.schema._id = String;
@@ -667,6 +668,7 @@
         this.schema.docType = String;
         this.schema.binaries = Object;
       }
+      console.log('CozyBackedModel.__super__.constructor.cast.apply');
       return CozyBackedModel.__super__.constructor.cast.apply(this, arguments);
     };
 
@@ -1068,8 +1070,13 @@
     };
 
     Model.create = function(data, callback) {
+      console.log('CREATE MODEL');
       data.docType = this.getDocType();
+      console.log('data.docType');
+      console.log('cast data');
+      console.log(data);
       data = this.cast(data);
+
       return this.adapter.create(data, (function(_this) {
         return function(err, attributes) {
           var k, v;
