@@ -1090,6 +1090,7 @@
       console.log(data);
       data.docType = this.getDocType();
       console.log('THIS.CAST');
+      console.log(data);
       data = this.cast(data);
       console.log('THIS.CAST');
       console.log(data);
