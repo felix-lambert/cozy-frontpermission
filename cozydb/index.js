@@ -428,7 +428,9 @@
         err = "Request failed : #{e.target.status}";
         callback(err);
       }
-      xhr.send(JSON.stringify(attributes));
+      console.log('attributes of send');
+      console.log(attributes);
+      xhr.send(attributes);
 
     },
     save: function(id, data, callback) {
@@ -671,6 +673,7 @@
         this.schema.binaries = Object;
       }
       console.log('CozyBackedModel.__super__.constructor.cast.apply');
+      console.log(arguments);
       return CozyBackedModel.__super__.constructor.cast.apply(this, arguments);
     };
 
@@ -709,6 +712,10 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+
+  console.log('************************************');
+  console.log(CozyModel);
+  console.log('************************************');
   log = require('printit')({
     date: true,
     prefix: 'Cozy DB'
@@ -805,6 +812,8 @@
       Pouch = require('pouchdb');
       PouchModel = require('./pouchmodel');
       module.exports.CozyModel = CozyModel = PouchModel;
+      console.log('MAYBE SET UP POUCH');
+      console.log(CozyModel);
       if (options.db) {
         return PouchModel.db = options.db;
       } else {
@@ -833,6 +842,8 @@
       file = _ref[_i];
       try {
         model = require(path.join(modelsPath, file));
+        console.log('GET REQUEST');
+        console.log(CozyModel);
         if ((model != null ? model.prototype : void 0) instanceof CozyModel) {
           models.push(model);
         }
