@@ -1073,6 +1073,7 @@
       console.log('CREATE MODEL');
       data.docType = this.getDocType();
       console.log('data.docType');
+      console.log(data.docType);
       console.log('cast data');
       console.log(data);
       data = this.cast(data);
@@ -1303,6 +1304,7 @@
       if (this.id) {
         return this.constructor.adapter.save.call(this.constructor, this.id, this.getAttributes(), cb);
       } else {
+        console.log('Model.prototype.save');
         return this.constructor.adapter.create.call(this.constructor, this.getAttributes(), cb);
       }
     };
@@ -1469,6 +1471,7 @@
       });
     },
     create: function(attributes, callback) {
+      console.log('POUCHDB create: function(attributes, callback)');
       var func;
       if ((attributes.id != null) || (attributes._id != null)) {
         if (!attributes.id) {
@@ -15256,6 +15259,7 @@ function plural(ms, n, name) {
 }
 
 },{}],110:[function(require,module,exports){
+  console.log('__________OBJECT CREATE___________');
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -17615,6 +17619,7 @@ var path = require('path');
 var fs = require('fs');
 
 function Mime() {
+  console.log('MIME');
   // Map of extension -> mime type
   this.types = Object.create(null);
 
