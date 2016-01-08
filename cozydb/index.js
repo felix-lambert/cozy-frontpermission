@@ -411,7 +411,7 @@
       console.log('++++++create++++++++++++');
       console.log(attributes);
       console.log(attributes.toString());
-      JSON.stringify(attributes);
+      console.log(JSON.stringify(attributes));
       console.log('+++++++++++++++++++++++');
       var path;
       path = "/ds-api/data/";
