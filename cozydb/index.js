@@ -408,8 +408,9 @@
       });
     },
     create: function(attributes, callback) {
-      console.log('create');
+      console.log('++++++create++++++++++++');
       console.log(attributes);
+      console.log('+++++++++++++++++++++++');
       var path;
       path = "/ds-api/data/";
       if (attributes.id != null) {
