@@ -1086,6 +1086,7 @@
       console.log('CREATE MODEL');
       console.log(data);
       data.docType = this.getDocType();
+      console.log('THIS.CAST');
       data = this.cast(data);
       console.log('THIS.CAST');
       console.log(data);
@@ -1267,6 +1268,7 @@
     };
 
     Model.cast = function(attributes, target) {
+      console.log('Model.cast');
       if (target == null) {
         target = {};
       }
