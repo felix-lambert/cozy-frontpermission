@@ -41,17 +41,17 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	 //        note          : user.note
 		// };
 		
-		console.log('END SEND USER');
-	 	Contact.create(user, function(err, res) {
-            if (err) {
-                alert(err);
-            } else {
-            	console.log('///////CONTACT/////////////');
-            	console.log(res);
-            	console.log('//////////////////////////');
-                $scope.contact = res;
-            }
-        });
+		// console.log('END SEND USER');
+	 // 	Contact.create(user, function(err, res) {
+  //           if (err) {
+  //               alert(err);
+  //           } else {
+  //           	console.log('///////CONTACT/////////////');
+  //           	console.log(res);
+  //           	console.log('//////////////////////////');
+  //               $scope.contact = res;
+  //           }
+  //       });
 		// Contact.create(user, function(err, contact) {
 		// 	console.log('/////contact////////////////');
 		// 	if (err) {
