@@ -16,17 +16,19 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 		console.log('user');
 		console.log(user);
 
-		// Contact = cozydb.getModel('Contact', {
-		// 	fn            : String,
-	 //        n             : String,
-	 //        org           : String,
-	 //        title         : String,
-	 //        department    : String,
-	 //        bday          : String,
-	 //        nickname      : String,
-	 //        url           : String,
-	 //        note          : String
-		// });
+		Contact = cozydb.getModel('Contact', {
+			fn            : String,
+	        n             : String,
+	        org           : String,
+	        title         : String,
+	        department    : String,
+	        bday          : String,
+	        nickname      : String,
+	        url           : String,
+	        note          : String
+		});
+		console.log('second user');
+		console.log(user);
 		// console.log(Contact);
 		// console.log('................SEND USER.........');
 		// var contact = {
