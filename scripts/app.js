@@ -63,6 +63,9 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        url           : user.url,
 	        note          : user.note
 		};
+		console.log('contact');
+		console.log(contact);
+		console.log('user');
 		console.log(user);
 		console.log('END SEND USER');
 	 	Contact.create(contact, function(err, res) {

@@ -1082,8 +1082,9 @@
     };
 
     Model.create = function(data, callback) {
-      console.log('CREATE MODEL');
+      console.log('++++++++++CREATE MODEL++++++++++++++');
       console.log(data);
+      console.log("+++++++END CREATE MODEL++++++++++++++");
       data.docType = this.getDocType();
       console.log('THIS.CAST');
       console.log(data);
