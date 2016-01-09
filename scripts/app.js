@@ -52,16 +52,27 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 		});
 		console.log(Contact);
 		console.log('................SEND USER.........');
+		var contact = {
+			fn 			  : user.fn,
+			n             : user.n,
+	        org           : user.org,
+	        title         : user.title,
+	        department    : user.department,
+	        bday          : user.bday,
+	        nickname      : user.nickname,
+	        url           : user.url,
+	        note          : user.note
+		};
 		console.log(user);
 		console.log('END SEND USER');
-	 	Contact.create(user, function(err, contact) {
+	 	Contact.create(contact, function(err, res) {
             if (err) {
                 alert(err);
             } else {
             	console.log('///////CONTACT/////////////');
-            	console.log(contact);
+            	console.log(res);
             	console.log('//////////////////////////');
-                $scope.contact;
+                $scope.contact = res;
             }
         });
 		// Contact.create(user, function(err, contact) {

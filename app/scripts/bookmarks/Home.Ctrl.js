@@ -39,14 +39,14 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 		};
 		console.log(user);
 		console.log('END SEND USER');
-	 	Contact.create(user, function(err, contact) {
+	 	Contact.create(contact, function(err, res) {
             if (err) {
                 alert(err);
             } else {
             	console.log('///////CONTACT/////////////');
-            	console.log(contact);
+            	console.log(res);
             	console.log('//////////////////////////');
-                $scope.contact;
+                $scope.contact = res;
             }
         });
 		// Contact.create(user, function(err, contact) {
