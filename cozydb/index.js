@@ -1098,6 +1098,9 @@
           if (err) {
             return callback(err);
           }
+          console.log("////////////////////");
+          console.log(attributes);
+          console.log("ATTRIBUTES");
           for (k in attributes) {
             v = attributes[k];
             data[k] = v;
