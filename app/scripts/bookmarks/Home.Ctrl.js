@@ -11,6 +11,10 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 
 	function create(user) {
 		console.log('create contact');
+		console.log('contact');
+		console.log(contact);
+		console.log('user');
+		console.log(user);
 		// console.log(window);
 		console.log(cozydb);
 		Contact = cozydb.getModel('Contact', {
@@ -37,10 +41,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        url           : user.url,
 	        note          : user.note
 		};
-		console.log('contact');
-		console.log(contact);
-		console.log('user');
-		console.log(user);
+		
 		console.log('END SEND USER');
 	 	Contact.create(user, function(err, res) {
             if (err) {
