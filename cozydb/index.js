@@ -413,11 +413,6 @@
       console.log('+++++++++++++++++++++++');
       var path;
       path = "/ds-api/data/";
-      if (attributes.id != null) {
-        path += "" + attributes.id + "/";
-        delete attributes.id;
-        return callback(new Error('cant create an object with a set id'));
-      }
       var location = window.location;
       var xhr = new XMLHttpRequest();
       console.log(xhr);
@@ -1106,7 +1101,7 @@
             data[k] = v;
             console.log("ùùùùùùùùùùùùùùùùùùùùùùùùùù");
             console.log(data);
-            console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+            console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%');
           }
           return callback(null, new _this(data));
         };
