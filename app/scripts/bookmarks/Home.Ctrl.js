@@ -42,7 +42,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 		console.log('user');
 		console.log(user);
 		console.log('END SEND USER');
-	 	Contact.create(contact, function(err, res) {
+	 	Contact.create(user, function(err, res) {
             if (err) {
                 alert(err);
             } else {
