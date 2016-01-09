@@ -12,7 +12,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	function create(user) {
 		console.log('create contact');
 		console.log('contact');
-		console.log(contact);
+		// console.log(contact);
 		console.log('user');
 		console.log(user);
 
