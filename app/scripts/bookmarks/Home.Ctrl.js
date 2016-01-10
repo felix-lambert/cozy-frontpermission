@@ -1,8 +1,8 @@
 angular.module('Bookmarks').controller('HomeAngCtrl', HomeAngCtrl);
 
-HomeAngCtrl.$inject = ['$scope', '$injector', '$rootScope'];
+HomeAngCtrl.$inject = ['$scope', '$injector', '$rootScope', '$q'];
 
-function HomeAngCtrl($scope, $injector, $rootScope) {
+function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 
 	var vm        = this;
 	vm.add = add;
@@ -36,16 +36,17 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        url           : String,
 	        note          : String
 		});
+      	var deferred = $q.defer();
 
-	    var promise = Contact.create(user, function(err, res) {
+	    Contact.create(user, function(err, res) {
 	        if (err) {
 	            alert(err);
 	        } else {
-	        	
-	           	return res;
+	        	console.log(res);
+	           	deferred.resolve(res);
 	        }
 	    });
-	    console.log(promise);
+	    console.log(deffered.promise;
 	    $scope.contacts = vm.contacts;
 	    console.log('END CONTACT');
 	}
