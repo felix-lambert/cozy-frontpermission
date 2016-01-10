@@ -1256,12 +1256,12 @@
     };
 
     Model.cast = function(attributes, target) {
-      // console.log('Model.cast');
-      // if (target == null) {
-      //   target = {};
-      // }
-      // console.log('_________________________CAST__________________');
-      // return castObject(attributes, this.schema, target, this.name);
+      console.log('Model.cast');
+      if (target == null) {
+        target = {};
+      }
+      console.log('_________________________CAST__________________');
+      return castObject(attributes, this.schema, target, this.name);
     };
 
     Model.destroyAll = function(params, callback) {
@@ -2068,6 +2068,39 @@
 
   reportCastIgnore = ((_ref = process.env.NODE_ENV) !== 'production' && _ref !== 'test') || process.env.NO_CAST_WARNING;
 
+  exports.castObject = castObject = function(raw, schema, target, name) {
+    console.log("castObject");
+    var handled, prop, typeOrOptions, value;
+    if (target == null) {
+      target = {};
+    }
+    handled = [];
+    if (schema === NoSchema) {
+      for (prop in raw) {
+        value = raw[prop];
+        target[prop] = value;
+      }
+      return target;
+    }
+    for (prop in schema) {
+      if (!__hasProp.call(schema, prop)) continue;
+      typeOrOptions = schema[prop];
+      target[prop] = castValue(raw[prop], typeOrOptions);
+      if (reportCastIgnore) {
+        handled.push(prop);
+      }
+    }
+    if (reportCastIgnore) {
+      for (prop in raw) {
+        if (!__hasProp.call(raw, prop)) continue;
+        value = raw[prop];
+        if (__indexOf.call(handled, prop) < 0) {
+          log.warn("Warning : cast ignored property '" + prop + "' on '" + name + "'");
+        }
+      }
+    }
+    return target;
+  };
 
   Model = require('../model');
 

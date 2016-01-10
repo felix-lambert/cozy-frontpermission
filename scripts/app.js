@@ -41,8 +41,8 @@ function Contact($http) {
     this._nickname = String;
     this._url = String;
     this._note = String;
-    this._contact = {};
-    this._contacts;
+    this._contact;
+    this._contacts = {};
     this._contactList = [];
   };
 
