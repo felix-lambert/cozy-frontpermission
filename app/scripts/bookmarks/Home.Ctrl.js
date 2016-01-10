@@ -8,40 +8,36 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	vm.getContact = getContact;
 	vm.create = create;
 	var data = {};
-
+	var Contact = $injector.get('Contact');
+	var contact = new Contact; 
 	function create(user) {
 		console.log('create contact');
 		console.log('contact');
 		// console.log(contact);
 		console.log('user');
 		console.log(user);
-
-		Contact = cozydb.getModel('Contact', {
-			fn            : String,
-	        n             : String,
-	        org           : String,
-	        title         : String,
-	        department    : String,
-	        bday          : String,
-	        nickname      : String,
-	        url           : String,
-	        note          : String
-		});
-		console.log('second user');
+		var defaultForm = {
+          fn : "",
+          n : "",
+            org           : "",
+	        title         : "",
+	        department    : "",
+	        bday          : "",
+	        nickname      : "",
+	        url           : "",
+	        note          : ""
+      	};
+		
+		contact.setContact(user);
+		contact.addContact().then(function() {
+			vm.contacts = contact._contactList;
+			console.log(vm.contacts);
+      		// $scope.form.$setPristine();	
+      	});
 		console.log(user);
 		
 		console.log('END SEND USER');
-	 	Contact.create(user, function(err, res) {
-            if (err) {
-                alert(err);
-            } else {
-            	console.log('///////CONTACT/////////////');
-            	console.log(res);
-                vm.contact = res;
-                console.log('$$$$$$$$$$$$$$');
-            }
-        });
-		console.log('//////////////////');
+	 	
 	}
 
   	function getContact() {

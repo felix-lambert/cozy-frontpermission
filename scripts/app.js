@@ -24,6 +24,92 @@ function appConfig($httpProvider, $routeProvider) {
   });
   console.log('app config');
 }
+;
+angular.module('Bookmarks').factory('Contact', Contact);
+
+Bookmark.$inject = ['$http'];
+
+function Contact($http) {
+
+  var Contact = function() {
+    this._fn = String;
+    this._n = String;
+    this._org = String;
+    this._title = String;
+    this._department = String;
+    this._bday = String;
+    this._nickname = String;
+    this._url = String;
+    this._note = String;
+    this._contact = {};
+    this._contacts = {};
+    this._contactList = [];
+  };
+
+  Contact.prototype = {
+    constructor: Contact,
+    setId: setId,
+    setBookmark: setBookmark,
+    deleteBookmark: deleteBookmark,
+    addBookmark: addBookmark,
+    getBookmarks: getBookmarks
+  };
+
+  return Contact;
+
+  function setBookmark(contacts) {
+    this._contacts = contact;
+    this._contact = cozydb.getModel('Contact', {
+		fn            : String,
+        n             : String,
+        org           : String,
+        title         : String,
+        department    : String,
+        bday          : String,
+        nickname      : String,
+        url           : String,
+        note          : String
+	});
+  }
+
+  function setId(id) {
+    this._id = id;
+  }
+  // Define your route depended to the name of your app
+  function deleteBookmark() {
+    var self = this;
+    return $http.get('/api/delete/' + self._id).then(function(response) {
+      return response;
+    });
+  }
+
+  // Define your route depended to the name of your app
+  function addContact() {
+    var self = this;
+    return this._contact.create(user, function(err, res) {
+        if (err) {
+            alert(err);
+        } else {
+        	console.log('///////CONTACT/////////////');
+            self._contactList = res;
+            return (res);
+        }
+    });
+    return $http.post('/api/bookmark', self._bookmark).then(function(response) {
+      self._bookmark = response.data;
+      return response;
+    });
+  }
+  
+  // Define your route depended to the name of your app
+  function getBookmarks() {
+    var self = this;
+    return $http.get('/api/bookmarks').then(function(response) {
+      self._bookList = response.data;
+      return response;
+    });
+  }
+}
 ;angular.module('Bookmarks').controller('HomeAngCtrl', HomeAngCtrl);
 
 HomeAngCtrl.$inject = ['$scope', '$injector', '$rootScope'];
@@ -34,40 +120,36 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	vm.getContact = getContact;
 	vm.create = create;
 	var data = {};
-
+	var Contact = $injector.get('Contact');
+	var contact = new Contact; 
 	function create(user) {
 		console.log('create contact');
 		console.log('contact');
 		// console.log(contact);
 		console.log('user');
 		console.log(user);
-
-		Contact = cozydb.getModel('Contact', {
-			fn            : String,
-	        n             : String,
-	        org           : String,
-	        title         : String,
-	        department    : String,
-	        bday          : String,
-	        nickname      : String,
-	        url           : String,
-	        note          : String
-		});
-		console.log('second user');
+		var defaultForm = {
+          fn : "",
+          n : "",
+            org           : "",
+	        title         : "",
+	        department    : "",
+	        bday          : "",
+	        nickname      : "",
+	        url           : "",
+	        note          : ""
+      	};
+		
+		contact.setContact(user);
+		contact.addContact().then(function() {
+			vm.contacts = contact._contactList;
+			console.log(vm.contacts);
+      		// $scope.form.$setPristine();	
+      	});
 		console.log(user);
 		
 		console.log('END SEND USER');
-	 	Contact.create(user, function(err, res) {
-            if (err) {
-                alert(err);
-            } else {
-            	console.log('///////CONTACT/////////////');
-            	console.log(res);
-                vm.contact = res;
-                console.log('$$$$$$$$$$$$$$');
-            }
-        });
-		console.log('//////////////////');
+	 	
 	}
 
   	function getContact() {
