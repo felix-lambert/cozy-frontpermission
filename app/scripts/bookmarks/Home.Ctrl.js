@@ -29,19 +29,6 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 		});
 		console.log('second user');
 		console.log(user);
-		// console.log(Contact);
-		// console.log('................SEND USER.........');
-		// var contact = {
-		// 	fn 			  : user.fn,
-		// 	n             : user.n,
-	 //        org           : user.org,
-	 //        title         : user.title,
-	 //        department    : user.department,
-	 //        bday          : user.bday,
-	 //        nickname      : user.nickname,
-	 //        url           : user.url,
-	 //        note          : user.note
-		// };
 		
 		console.log('END SEND USER');
 	 	Contact.create(user, function(err, res) {

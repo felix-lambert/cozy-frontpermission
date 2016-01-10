@@ -396,21 +396,21 @@
       });
     },
     find: function(id, callback) {
-      return client.get("data/" + id + "/", function(error, response, body) {
-        if (error) {
-          return callback(error);
-        } else if (response.statusCode === 404) {
-          return callback(null, null);
-        } else {
-          return callback(null, body);
-        }
-      });
+      var location = window.location;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/ds-api/data/" + id + "/", true);
+      xhr.onload = function() {
+        callback(null, xhr.response);
+      }
+      xhr.onerror = function(e) {
+        err = "Request failed : #{e.target.status}";
+        callback(err);
+      }
+      console.log('attributes of send');
+      console.log(attributes);
+      xhr.send();
     },
     create: function(attributes, callback) {
-      console.log('++++++create++++++++++++');
-      console.log(attributes.toString());
-      console.log(JSON.stringify(attributes));
-      console.log('+++++++++++++++++++++++');
       var path;
       path = "/ds-api/data/";
       var location = window.location;
@@ -1082,28 +1082,12 @@
     };
 
     Model.create = function(data, callback) {
-      console.log('++++++++++CREATE MODEL++++++++++++++');
-      console.log(data);
-      console.log("+++++++END CREATE MODEL++++++++++++++");
-      data.docType = this.getDocType();
-      console.log('THIS.CAST');
-      console.log(data);
       return this.adapter.create(data, (function(_this) {
         return function(err, attributes) {
           var k, v;
           if (err) {
             return callback(err);
           }
-          // console.log("////////////////////");
-          // console.log(attributes);
-          // console.log("ATTRIBUTES");
-          // for (k in attributes) {
-          //   v = attributes[k];
-          //   data[k] = v;
-          //   console.log("ùùùùùùùùùùùùùùùùùùùùùùùùùù");
-          //   console.log(data);
-          //   console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%');
-          // }
           return callback(null, new _this(data));
         };
       })(this));
