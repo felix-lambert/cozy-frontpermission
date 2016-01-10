@@ -27,7 +27,7 @@ function appConfig($httpProvider, $routeProvider) {
 ;
 angular.module('Bookmarks').factory('Contact', Contact);
 
-Bookmark.$inject = ['$http'];
+Contact.$inject = ['$http'];
 
 function Contact($http) {
 
@@ -51,7 +51,7 @@ function Contact($http) {
     setId: setId,
     setBookmark: setBookmark,
     deleteBookmark: deleteBookmark,
-    addBookmark: addBookmark,
+    addContact: addContact,
     getBookmarks: getBookmarks
   };
 
