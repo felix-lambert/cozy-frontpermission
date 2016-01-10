@@ -28,8 +28,16 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
       	};
       	Contact = cozydb.getModel('Contact', {
 			fn            : String,
-	        n             : String
+	        n             : String,
+	        org           : String,
+	        title         : String,
+	        department    : String,
+	        bday          : String,
+	        nickname      : String,
+	        url           : String,
+	        note          : String
 		});
+
 	    Contact.create(user).then(function(err, res) {
 	        if (err) {
 	            alert(err);
