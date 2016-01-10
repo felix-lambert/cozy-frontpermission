@@ -419,7 +419,8 @@
         console.log(xhr);
         xhr.open("POST", path, true);
         xhr.onload = function() {
-          resolve(null, xhr.response);
+
+          resolve(xhr.response);
         }
         xhr.onerror = function(e) {
           err = "Request failed : #{e.target.status}";
