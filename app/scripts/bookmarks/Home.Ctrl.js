@@ -48,6 +48,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	    });
 	    vm.contacts = data;
 	    $scope.contacts = data;
+	    console.log('END CONTACT');
 	}
 
   	function getContact() {
