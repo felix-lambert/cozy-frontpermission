@@ -135,6 +135,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        	console.log(res);
 	           	vm.contacts = res;
 	           	$scope.contacts = res;
+	           	$rootScope.contacts = res;
 	           	console.log('/////////////////////////////');
 	        }
 	    });
