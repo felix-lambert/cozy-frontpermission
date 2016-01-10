@@ -127,14 +127,17 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	        note          : String
 		});
 
-	    Contact.create(user).then(function(res) {
-	        console.log('Contact.create');
-	        console.log(res);
-	        vm.contacts = res;
-	        $scope.contacts = res;
-	    }).catch(function() {
-		  // An error occurred
-		});
+	    Contact.create(user, function(err, res) {
+	        if (err) {
+	            alert(err);
+	        } else {
+	        	console.log('Contact.create');
+	        	console.log(res);
+	        	$scope.contacts = res;
+	        	vm.contacts = res;
+	        }
+	    });
+	    console.log(deferred.promise);
 	    console.log('END CONTACT');
 	}
 
