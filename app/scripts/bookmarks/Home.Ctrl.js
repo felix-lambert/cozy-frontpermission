@@ -38,7 +38,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        note          : String
 		});
 
-	    Contact.create(user).then(function(err, res) {
+	    Contact.create(user, function(err, res) {
 	        if (err) {
 	            alert(err);
 	        } else {
