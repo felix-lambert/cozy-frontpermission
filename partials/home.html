@@ -23,7 +23,7 @@
             <td>Actions</td>  
         </tr>
         <tr>
-            <td>{{home.contacts}}</td>
+            <td ng-repeat="contact in home.contacts">{{contact}}</td>
             <td>
                 <button class="btn btn-default" ng-click="home.removeContact($index, contact.id)" type="submit">Delete</button>
             </td>
