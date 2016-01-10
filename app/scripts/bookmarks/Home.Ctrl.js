@@ -32,11 +32,10 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 		contact.addContact().then(function() {
 			vm.contacts = contact._contactList;
 			console.log(vm.contacts);
+      		console.log('END SEND USER');
       		// $scope.form.$setPristine();	
       	});
-		console.log(user);
 		
-		console.log('END SEND USER');
 	 	
 	}
 

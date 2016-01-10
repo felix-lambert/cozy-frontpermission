@@ -86,7 +86,7 @@ function Contact($http) {
   // Define your route depended to the name of your app
   function addContact() {
     var self = this;
-    return this._contact.create(user, function(err, res) {
+    return self._contact.create(self._contacts, function(err, res) {
         if (err) {
             alert(err);
         } else {
@@ -94,10 +94,6 @@ function Contact($http) {
             self._contactList = res;
             return (res);
         }
-    });
-    return $http.post('/api/bookmark', self._bookmark).then(function(response) {
-      self._bookmark = response.data;
-      return response;
     });
   }
   
@@ -144,11 +140,10 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 		contact.addContact().then(function() {
 			vm.contacts = contact._contactList;
 			console.log(vm.contacts);
+      		console.log('END SEND USER');
       		// $scope.form.$setPristine();	
       	});
-		console.log(user);
 		
-		console.log('END SEND USER');
 	 	
 	}
 
