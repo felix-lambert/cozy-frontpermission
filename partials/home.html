@@ -23,7 +23,7 @@
             <td>Actions</td>  
         </tr>
         <tr>
-            <td ng-repeat="contact in home.contacts">{{contact}}</td>
+            <td ng-repeat="contact in home.contacts track by $index">{{contact}}</td>
             <td>
                 <button class="btn btn-default" ng-click="home.removeContact($index, contact.id)" type="submit">Delete</button>
             </td>
