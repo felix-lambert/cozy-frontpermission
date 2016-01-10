@@ -46,7 +46,7 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	           	deferred.resolve(res);
 	        }
 	    });
-	    console.log(deffered.promise;
+	    console.log(deferred.promise);
 	    $scope.contacts = vm.contacts;
 	    console.log('END CONTACT');
 	}
