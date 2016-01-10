@@ -42,6 +42,8 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
                 vm.contact = res;
                 console.log('§§§§§§§§§§§§§§');
                 console.log(res.fn);
+                vm.contacts = res.fn;
+                $scope.contacts = res.fn;
                 console.log('$$$$$$$$$$$$$$');
             }
         });
