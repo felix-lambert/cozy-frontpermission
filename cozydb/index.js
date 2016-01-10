@@ -1082,12 +1082,15 @@
     };
 
     Model.create = function(data, callback) {
+      data.docType = this.getDocType();
+      data = this.cast(data);
       return this.adapter.create(data, (function(_this) {
         return function(err, attributes) {
           var k, v;
           if (err) {
             return callback(err);
           }
+          return callback(null, new _this(data));
         };
       })(this));
     };
