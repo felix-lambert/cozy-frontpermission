@@ -37,17 +37,15 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        note          : String
 		});
 
-	    Contact.create(user, function(err, res) {
+	    vm.contacts = Contact.create(user, function(err, res) {
 	        if (err) {
 	            alert(err);
 	        } else {
-	        	console.log('///////CONTACT/////////////');
-	        	console.log(res);
-	           	data = res;
+	        	console.log('END CREAte contacts');
+	           	return res;
 	        }
 	    });
-	    vm.contacts = data;
-	    $scope.contacts = data;
+	    $scope.contacts = vm.contacts;
 	    console.log('END CONTACT');
 	}
 
