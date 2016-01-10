@@ -49,7 +49,7 @@ function Contact($http) {
   Contact.prototype = {
     constructor: Contact,
     setId: setId,
-    setBookmark: setBookmark,
+    setContact: setContact,
     deleteBookmark: deleteBookmark,
     addContact: addContact,
     getBookmarks: getBookmarks
