@@ -95,7 +95,6 @@ HomeAngCtrl.$inject = ['$scope', '$injector', '$rootScope'];
 function HomeAngCtrl($scope, $injector, $rootScope) {
 
 	var vm        = this;
-	vm.getContact = getContact;
 	vm.add = add;
 	var data = {};
 
@@ -135,6 +134,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        	console.log('///////CONTACT/////////////');
 	        	console.log(res);
 	           	vm.contacts = res;
+	           	$scope.contacts = res;
 	        }
 	    });
 	}
