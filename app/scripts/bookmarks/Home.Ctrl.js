@@ -6,11 +6,11 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 
 	var vm        = this;
 	vm.getContact = getContact;
-	vm.create = create;
+	vm.add = add;
 	var data = {};
 	var Contact = $injector.get('Contact');
 	var contact = new Contact; 
-	function create(user) {
+	function add(user) {
 		console.log('create contact');
 		console.log('contact');
 		// console.log(contact);
