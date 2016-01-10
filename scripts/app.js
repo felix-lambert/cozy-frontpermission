@@ -57,7 +57,7 @@ function Contact($http) {
 
   return Contact;
 
-  function setBookmark(contacts) {
+  function setContact(contacts) {
     this._contacts = contact;
     this._contact = cozydb.getModel('Contact', {
 		fn            : String,
