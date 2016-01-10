@@ -50,27 +50,7 @@ function Contact($http) {
   // Define your route depended to the name of your app
   function addContact() {
     var self = this;
-    contact = cozydb.getModel('Contact', {
-		fn            : String,
-        n             : String,
-        org           : String,
-        title         : String,
-        department    : String,
-        bday          : String,
-        nickname      : String,
-        url           : String,
-        note          : String
-	});
-    contact.create(self._contacts).then(function(err, res) {
-        if (err) {
-            alert(err);
-        } else {
-        	console.log('///////CONTACT/////////////');
-        	console.log(res);
-            self._contactList = res;
-            return (res);
-        }
-    });
+    
   }
   
   // Define your route depended to the name of your app

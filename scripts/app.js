@@ -76,27 +76,7 @@ function Contact($http) {
   // Define your route depended to the name of your app
   function addContact() {
     var self = this;
-    contact = cozydb.getModel('Contact', {
-		fn            : String,
-        n             : String,
-        org           : String,
-        title         : String,
-        department    : String,
-        bday          : String,
-        nickname      : String,
-        url           : String,
-        note          : String
-	});
-    contact.create(self._contacts).then(function(err, res) {
-        if (err) {
-            alert(err);
-        } else {
-        	console.log('///////CONTACT/////////////');
-        	console.log(res);
-            self._contactList = res;
-            return (res);
-        }
-    });
+    
   }
   
   // Define your route depended to the name of your app
@@ -118,8 +98,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	vm.getContact = getContact;
 	vm.add = add;
 	var data = {};
-	var Contact = $injector.get('Contact');
-	var contact = new Contact; 
+
 	function add(user) {
 		console.log('create contact');
 		console.log('contact');
@@ -137,16 +116,26 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        url           : "",
 	        note          : ""
       	};
-		
-		contact.setContact(user);
-		contact.addContact().then(function() {
-			vm.contacts = contact._contactList;
-			console.log(vm.contacts);
-      		console.log('END SEND USER');
-      		// $scope.form.$setPristine();	
-      	});
-		
-	 	
+      	Contact = cozydb.getModel('Contact', {
+			fn            : String,
+	        n             : String,
+	        org           : String,
+	        title         : String,
+	        department    : String,
+	        bday          : String,
+	        nickname      : String,
+	        url           : String,
+	        note          : String
+		});
+	    Contact.create(user).then(function(err, res) {
+	        if (err) {
+	            alert(err);
+	        } else {
+	        	console.log('///////CONTACT/////////////');
+	        	console.log(res);
+	           	vm.contacts = res;
+	        }
+	    });
 	}
 
   	function getContact() {
