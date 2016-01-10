@@ -61,7 +61,7 @@ function Contact($http) {
         url           : String,
         note          : String
 	});
-    return contact.create(self._contacts).then(function(err, res) {
+    contact.create(self._contacts).then(function(err, res) {
         if (err) {
             alert(err);
         } else {
