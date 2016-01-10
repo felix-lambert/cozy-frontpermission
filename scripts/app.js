@@ -133,12 +133,11 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        } else {
 	        	console.log('///////CONTACT/////////////');
 	        	console.log(res);
-	           	vm.contacts = res;
-	           	$scope.contacts = res;
-	           	$rootScope.contacts = res;
-	           	console.log('/////////////////////////////');
+	           	data = res;
 	        }
 	    });
+	    vm.contacts = data;
+	    $scope.contacts = data;
 	}
 
   	function getContact() {
