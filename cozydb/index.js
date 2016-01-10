@@ -1088,7 +1088,6 @@
           if (err) {
             return callback(err);
           }
-          return callback(null, new _this(data));
         };
       })(this));
     };
