@@ -59,17 +59,7 @@ function Contact($http) {
 
   function setContact(contacts) {
     this._contacts = contacts;
-    this._contact = cozydb.getModel('Contact', {
-		fn            : String,
-        n             : String,
-        org           : String,
-        title         : String,
-        department    : String,
-        bday          : String,
-        nickname      : String,
-        url           : String,
-        note          : String
-	});
+    
   }
 
   function setId(id) {
@@ -86,7 +76,18 @@ function Contact($http) {
   // Define your route depended to the name of your app
   function addContact() {
     var self = this;
-    return self._contact.create(self._contacts).then(function(err, res) {
+    var contact = cozydb.getModel('Contact', {
+		fn            : String,
+        n             : String,
+        org           : String,
+        title         : String,
+        department    : String,
+        bday          : String,
+        nickname      : String,
+        url           : String,
+        note          : String
+	});
+    return contact.create(self._contacts).then(function(err, res) {
         if (err) {
             alert(err);
         } else {
