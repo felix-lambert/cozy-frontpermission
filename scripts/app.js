@@ -130,8 +130,8 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	    Contact.create(user).then(function(res) {
 	        console.log('Contact.create');
 	        console.log(res);
-	        vm.contacts = res;
-	        $scope.contacts = res;
+	        vm.contacts = res[0];
+	        $scope.contacts = res[0];
 	    }).catch(function() {
 		  // An error occurred
 		});
