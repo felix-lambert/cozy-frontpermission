@@ -58,7 +58,7 @@ function Contact($http) {
   return Contact;
 
   function setContact(contacts) {
-    this._contacts = contact;
+    this._contacts = contacts;
     this._contact = cozydb.getModel('Contact', {
 		fn            : String,
         n             : String,
