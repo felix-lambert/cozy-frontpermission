@@ -410,24 +410,27 @@
       console.log(attributes);
       xhr.send();
     },
-    create: function(attributes, callback) {
-      var path;
-      path = "/ds-api/data/";
-      var location = window.location;
-      var xhr = new XMLHttpRequest();
-      console.log(xhr);
-      xhr.open("POST", path, true);
-      xhr.onload = function() {
-        callback(null, xhr.response);
-      }
-      xhr.onerror = function(e) {
-        err = "Request failed : #{e.target.status}";
-        callback(err);
-      }
-      console.log('attributes of send');
-      console.log(attributes);
-      xhr.send(attributes);
-      console.log(xhr);
+    create: function(attributes) {
+      return new Promise(function(resolve, reject) {
+        var path;
+        path = "/ds-api/data/";
+        var location = window.location;
+        var xhr = new XMLHttpRequest();
+        console.log(xhr);
+        xhr.open("POST", path, true);
+        xhr.onload = function() {
+          resolve(null, xhr.response);
+        }
+        xhr.onerror = function(e) {
+          err = "Request failed : #{e.target.status}";
+          reject(err);
+        }
+        console.log('attributes of send');
+        console.log(attributes);
+        xhr.send(attributes);
+        console.log(xhr);
+      });
+      
     },
     save: function(id, data, callback) {
       return client.put("data/" + id + "/", data, function(error, response, body) {

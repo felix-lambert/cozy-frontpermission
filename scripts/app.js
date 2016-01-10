@@ -126,21 +126,15 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	        url           : String,
 	        note          : String
 		});
-      	var deferred = $q.defer();
 
-	    Contact.create(user, function(err, res) {
-	        if (err) {
-	            alert(err);
-	        } else {
-	        	console.log('Contact.create');
-	        	console.log(res);
-	        	$scope.$apply(function(){
-					deferred.resolve(res);
-				});
-	        }
-	    });
-	    console.log(deferred.promise);
-	    $scope.contacts = vm.contacts;
+	    Contact.create(user).then(function(res) {
+	        console.log('Contact.create');
+	        console.log(res);
+	        vm.contacts = res;
+	        $scope.contacts = res;
+	    }).catch(function() {
+		  // An error occurred
+		});
 	    console.log('END CONTACT');
 	}
 
