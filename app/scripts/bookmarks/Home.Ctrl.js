@@ -44,7 +44,7 @@ function HomeAngCtrl($scope, $injector, $rootScope) {
 	        	
 	           	return res;
 	        }
-	    );
+	    });
 	    console.log(promise);
 	    $scope.contacts = vm.contacts;
 	    console.log('END CONTACT');
