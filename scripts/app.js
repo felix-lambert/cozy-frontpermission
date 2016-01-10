@@ -132,8 +132,11 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	        if (err) {
 	            alert(err);
 	        } else {
+	        	console.log('Contact.create');
 	        	console.log(res);
-	           	deferred.resolve(res);
+	        	$scope.$apply(function(){
+					deferred.resolve(res);
+				});
 	        }
 	    });
 	    console.log(deferred.promise);
