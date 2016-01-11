@@ -1079,7 +1079,8 @@
 }).call(this,require('_process'))
 },{"../model":5,"./errors":8,"_process":136,"printit":120}],11:[function(require,module,exports){
 
-}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+
+})].call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"_process":136}],12:[function(require,module,exports){
 module.exports = FormData;
 },{}],13:[function(require,module,exports){
