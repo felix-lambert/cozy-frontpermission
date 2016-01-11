@@ -44,6 +44,45 @@
       xhr.setRequestHeader("Authorization", "Basic " + btoa("frontpermission:" + "password"));
       xhr.send(JSON.stringify(attributes));
     },
+    save: function(id, data, callback) {
+      return client.put("data/" + id + "/", data, function(error, response, body) {
+        if (error) {
+          return callback(error);
+        } else if (response.statusCode === 404) {
+          return callback(new Error("Document " + id + " not found"));
+        } else if (response.statusCode !== 200) {
+          return callback(new Error("Server error occured."));
+        } else {
+          return callback(null, body);
+        }
+      });
+    },
+    updateAttributes: function(id, data, callback) {
+      return client.put("data/merge/" + id + "/", data, function(error, response, body) {
+        if (error) {
+          return callback(error);
+        } else if (response.statusCode === 404) {
+          return callback(new Error("Document " + id + " not found"));
+        } else if (response.statusCode !== 200) {
+          return callback(new Error("Server error occured."));
+        } else {
+          return callback(null, body);
+        }
+      });
+    },
+    destroy: function(id, callback) {
+      return client.del("data/" + id + "/", function(error, response, body) {
+        if (error) {
+          return callback(error);
+        } else if (response.statusCode === 404) {
+          return callback(new Error("Document " + id + " not found"));
+        } else if (response.statusCode !== 204) {
+          return callback(new Error("Server error occured."));
+        } else {
+          return callback(null);
+        }
+      });
+    }
   };
 
   cozyIndexAdapter = {
