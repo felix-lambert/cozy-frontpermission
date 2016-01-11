@@ -420,6 +420,8 @@
       console.log(xhr);
       xhr.open("POST", path, true);
       xhr.onload = function() {
+        console.log('XHR.RESPONSE');
+        console.log(xhr.response);
         callback(null, xhr.response);
       }
       xhr.onerror = function(e) {
