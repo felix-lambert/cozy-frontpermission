@@ -86,7 +86,50 @@
 (function() {
   var CozyModel;
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-    
+
+
+  console.log('************************************');
+  log = require('printit')({
+    date: true,
+    prefix: 'Cozy DB'
+  });
+
+  emit = function() {};
+
+  module.exports.defaultRequests = defaultRequests = {
+    all: function(doc) {
+      return emit(doc._id, doc);
+    },
+    tags: function(doc) {
+      var tag, _i, _len, _ref, _results;
+      _ref = doc.tags || [];
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        tag = _ref[_i];
+        _results.push(emit(tag, doc));
+      }
+      return _results;
+    },
+    by: function() {
+      var fields, key;
+      fields = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      if (fields.length === 0) {
+        throw new Error('There should be at least one parameter');
+      }
+      if (fields.length === 1) {
+        key = "doc." + fields;
+      } else {
+        key = fields.map(function(field) {
+          return "doc." + field;
+        }).join(', ');
+        key = "[" + key + "]";
+      }
+      return (function(doc) {
+        return emit(KEY, doc);
+      }).toString().replace('KEY', key);
+    }
+  };
+
   module.exports.getModel = function(name, schema) {
     console.log('GET MODEL');
     var ClassFromGetModel, klass;
