@@ -413,6 +413,8 @@
     create: function(attributes, callback) {
       var path;
       path = "/ds-api/data/";
+      console.log('attributes');
+      console.log(attributes);
       var location = window.location;
       var xhr = new XMLHttpRequest();
       console.log(xhr);
