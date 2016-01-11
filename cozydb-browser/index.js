@@ -222,7 +222,7 @@
 }).call(this);
 
 }).call(this,require('_process'))
-},{"./utils/errors":8,"./utils/type_checking":10,"_process":136,"fs":124}], 8:[function(require,module,exports){
+},{"./utils/errors":8,"_process":136}], 8:[function(require,module,exports){
 
 },{}],17:[function(require,module,exports){
 "use strict";
