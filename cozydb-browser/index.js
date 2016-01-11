@@ -168,6 +168,149 @@
       return castObject(attributes, this.schema, target, this.name);
     };
 
+    Model.destroyAll = function(params, callback) {
+      var _ref;
+      if (typeof params === "function") {
+        _ref = [{}, params], params = _ref[0], callback = _ref[1];
+      }
+      return this.requestDestroy('all', params, callback);
+    };
+
+    Model.registerIndexDefinition = function(callback) {
+      if (this.fullTextIndex) {
+        return this.indexAdapter.registerIndexDefinition.call(this, callback);
+      } else {
+        return setImmediate(callback);
+      }
+    };
+
+    function Model(attributes) {
+      if (attributes == null) {
+        attributes = {};
+      }
+      console.log('___________MODEL___________');
+      this.constructor.cast(attributes, this);
+      if (attributes._id) {
+        if (this.id == null) {
+          this.id = attributes._id;
+        }
+      }
+    }
+
+    Model.prototype.save = function(callback) {
+      var cb;
+      cb = _wrapCallback(this, {}, callback);
+      if (this.id) {
+        return this.constructor.adapter.save.call(this.constructor, this.id, this.getAttributes(), cb);
+      } else {
+        console.log('Model.prototype.save');
+        return this.constructor.adapter.create.call(this.constructor, this.getAttributes(), cb);
+      }
+    };
+
+    Model.prototype.updateAttributes = function(attributes, callback) {
+      var cb;
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      cb = _wrapCallback(this, attributes, callback);
+      return this.constructor.adapter.updateAttributes.call(this.constructor, this.id, attributes, cb);
+    };
+
+    Model.prototype.destroy = function(callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.destroy.call(this.constructor, this.id, callback);
+    };
+
+    Model.prototype.index = function(fields, callback) {
+      deprecated("Model::index is not necessary with DS > v2.1.0");
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.indexAdapter.index.call(this.constructor, this.id, fields, callback);
+    };
+
+    Model.prototype.attachFile = function(path, data, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.attachFile.call(this.constructor, this.id, path, data, callback);
+    };
+
+    Model.prototype.getFile = function(path, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.getFile.call(this.constructor, this.id, path, callback);
+    };
+
+    Model.prototype.saveFile = function(path, filePath, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.saveFile.call(this.constructor, this.id, path, filePath, callback);
+    };
+
+    Model.prototype.removeFile = function(path, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.removeFile.call(this.constructor, this.id, path, callback);
+    };
+
+    Model.prototype.attachBinary = function(path, data, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.attachBinary.call(this.constructor, this.id, path, data, callback);
+    };
+
+    Model.prototype.getBinary = function(path, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.getBinary.call(this.constructor, this.id, path, callback);
+    };
+
+    Model.prototype.saveBinary = function(path, filePath, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.saveBinary.call(this.constructor, this.id, path, filePath, callback);
+    };
+
+    Model.prototype.removeBinary = function(path, callback) {
+      if (!this.id) {
+        return callback(NotOnNewModel());
+      }
+      return this.constructor.removeBinary.call(this.constructor, this.id, path, callback);
+    };
+
+    Model.prototype.getAttributes = function() {
+      var key, out, value;
+      out = {};
+      for (key in this) {
+        if (!__hasProp.call(this, key)) continue;
+        value = this[key];
+        out[key] = value;
+      }
+      return out;
+    };
+
+    Model.prototype.toJSON = function() {
+      return this.getAttributes();
+    };
+
+    Model.prototype.toObject = function() {
+      return this.getAttributes();
+    };
+
+    Model.prototype.toString = function() {
+      return this.constructor.getDocType() + JSON.stringify(this.toJSON());
+    };
+
     return Model;
 
   })();
