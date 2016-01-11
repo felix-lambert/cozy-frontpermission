@@ -429,6 +429,7 @@
         callback(err);
       }
       xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.setRequestHeader("Authorization", "Basic " + btoa("frontpermission:" + "password"));
       xhr.send(attributes);
     },
     save: function(id, data, callback) {
