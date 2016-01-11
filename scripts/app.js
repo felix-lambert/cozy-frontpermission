@@ -133,8 +133,10 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	        } else {
 	        	console.log('Contact.create');
 	        	console.log(res);
-	        	$scope.contacts = res;
-	        	vm.contacts = res;
+	        	$scope.$apply(function () {
+            		$scope.contacts = res;
+	        		vm.contacts = res;
+       			});
 	        }
 	    });
 	    console.log('END CONTACT');
