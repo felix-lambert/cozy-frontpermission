@@ -46,6 +46,176 @@
     },
   };
 
+  cozyIndexAdapter = {
+    search: function(query, callback) {
+      var data, docType;
+      docType = this.getDocType();
+      data = typeof query === 'string' ? {
+        query: query
+      } : query;
+      return client.post("data/search/" + docType, data, function(error, response, body) {
+        var results;
+        if (error) {
+          return callback(error);
+        } else if (response.statusCode !== 200) {
+          return callback(new Error(util.inspect(body)));
+        } else {
+          results = body.rows;
+          results.totalHits = body.totalHits;
+          results.facets = body.facets;
+          results.hits = body.hits;
+          return callback(null, results);
+        }
+      });
+    },
+    registerIndexDefinition: function(callback) {
+      var definitions, docType, url;
+      docType = this.getDocType();
+      definitions = this.fullTextIndex;
+      if (!definitions) {
+        return setImmediate(callback);
+      } else {
+        url = "data/index/define/" + docType;
+        return client.post(url, definitions, callback);
+      }
+    },
+    index: function(id, fields, callback) {
+      var cb;
+      cb = function(error, response, body) {
+        if (error) {
+          return callback(error);
+        } else if (response.statusCode !== 200) {
+          return callback(new Error(util.inspect(body)));
+        } else {
+          return callback(null);
+        }
+      };
+      return client.post("data/index/" + id, {
+        fields: fields
+      }, cb, false);
+    }
+  };
+
+  cozyFileAdapter = {
+    attach: function(id, path, data, callback) {
+      var urlPath, _ref;
+      if (typeof data === "function") {
+        _ref = [null, data], data = _ref[0], callback = _ref[1];
+      }
+      urlPath = "data/" + id + "/attachments/";
+      return client.sendFile(urlPath, path, data, function(error, response, body) {
+        try {
+          body = JSON.parse(body);
+        } catch (_error) {}
+        return checkError(error, response, body, 201, callback);
+      });
+    },
+    get: function(id, filename, callback) {
+      var output, urlPath;
+      urlPath = "data/" + id + "/attachments/" + (encodeURIComponent(filename));
+      output = new LaterStream(callback);
+      client.saveFileAsStream(urlPath, output.onReadableReady);
+      return output;
+    },
+    remove: function(id, filename, callback) {
+      var urlPath;
+      urlPath = "data/" + id + "/attachments/" + (encodeURIComponent(filename));
+      return client.del(urlPath, function(error, response, body) {
+        return checkError(error, response, body, 204, callback);
+      });
+    }
+  };
+
+  cozyBinaryAdapter = {
+    attach: function(id, path, data, callback) {
+      var urlPath, _ref;
+      if (typeof data === "function") {
+        _ref = [null, data], data = _ref[0], callback = _ref[1];
+      }
+      urlPath = "data/" + id + "/binaries/";
+      return client.sendFile(urlPath, path, data, function(error, response, body) {
+        try {
+          body = JSON.parse(body);
+        } catch (_error) {}
+        return checkError(error, response, body, 201, callback);
+      });
+    },
+    get: function(id, filename, callback) {
+      var output, urlPath;
+      urlPath = "data/" + id + "/binaries/" + (encodeURIComponent(filename));
+      output = new LaterStream(callback);
+      client.saveFileAsStream(urlPath, output.onReadableReady);
+      return output;
+    },
+    remove: function(id, filename, callback) {
+      var urlPath;
+      urlPath = "data/" + id + "/binaries/" + (encodeURIComponent(filename));
+      return client.del(urlPath, function(error, response, body) {
+        return checkError(error, response, body, 204, callback);
+      });
+    }
+  };
+
+  cozyRequestsAdapter = {
+    define: function(name, request, callback) {
+      var docType, map, path, reduce, reduceArgsAndBody, view;
+      docType = this.getDocType();
+      map = request.map, reduce = request.reduce;
+      if ((reduce != null) && typeof reduce === 'function') {
+        reduce = reduce.toString();
+        reduceArgsAndBody = reduce.slice(reduce.indexOf('('));
+        reduce = "function " + reduceArgsAndBody;
+      }
+      view = {
+        reduce: reduce,
+        map: "function (doc) {\n  if (doc.docType.toLowerCase() === \"" + docType + "\") {\n    filter = " + (map.toString()) + ";\n    filter(doc);\n  }\n}"
+      };
+      path = "request/" + docType + "/" + (name.toLowerCase()) + "/";
+      return client.put(path, view, function(error, response, body) {
+        return checkError(error, response, body, 200, callback);
+      });
+    },
+    run: function(name, params, callback) {
+      var docType, path, _ref;
+      if (typeof params === "function") {
+        _ref = [{}, params], params = _ref[0], callback = _ref[1];
+      }
+      docType = this.getDocType();
+      path = "request/" + docType + "/" + (name.toLowerCase()) + "/";
+      return client.post(path, params, function(error, response, body) {
+        if (error) {
+          return callback(error);
+        } else if (response.statusCode !== 200) {
+          return callback(new Error(util.inspect(body)));
+        } else {
+          return callback(null, body);
+        }
+      });
+    },
+    remove: function(name, callback) {
+      var docType, path;
+      docType = this.getDocType();
+      path = "request/" + docType + "/" + (name.toLowerCase()) + "/";
+      return client.del(path, function(error, response, body) {
+        return checkError(error, response, body, 204, callback);
+      });
+    },
+    requestDestroy: function(name, params, callback) {
+      var docType, path, _ref;
+      if (typeof params === "function") {
+        _ref = [{}, params], params = _ref[0], callback = _ref[1];
+      }
+      if (params.limit == null) {
+        params.limit = 100;
+      }
+      docType = this.getDocType();
+      path = "request/" + docType + "/" + (name.toLowerCase()) + "/destroy/";
+      return client.put(path, params, function(error, response, body) {
+        return checkError(error, response, body, 204, callback);
+      });
+    }
+  };
+
   module.exports = CozyBackedModel = (function(_super) {
     __extends(CozyBackedModel, _super);
 
@@ -54,6 +224,14 @@
     }
 
     CozyBackedModel.adapter = cozyDataAdapter;
+
+    CozyBackedModel.indexAdapter = cozyIndexAdapter;
+
+    CozyBackedModel.fileAdapter = cozyFileAdapter;
+
+    CozyBackedModel.binaryAdapter = cozyBinaryAdapter;
+
+    CozyBackedModel.requestsAdapter = cozyRequestsAdapter;
 
     CozyBackedModel.cast = function() {
       console.log('CozyBackedModel');
