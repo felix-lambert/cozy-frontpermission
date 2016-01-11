@@ -133,6 +133,11 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	        } else {
 	        	console.log('Contact.create');
 	        	console.log(res);
+	        	Contact.find(function(err, response) {
+	        		console.log('//////////////////');
+	        		console.log(response);
+	        		console.log('//////////////////');
+	        	});
 	        	$scope.$apply(function () {
             		$scope.contacts = res;
 	        		vm.contacts = res;

@@ -395,11 +395,12 @@
         }
       });
     },
-    find: function(id, callback) {
+    find: function(callback) {
       var location = window.location;
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/ds-api/data/" + id + "/", true);
+      xhr.open("POST", "/ds-api/request/contact/all", true);
       xhr.onload = function() {
+        console.log(xhr.response);
         callback(null, xhr.response);
       }
       xhr.onerror = function(e) {
@@ -420,19 +421,13 @@
       console.log(xhr);
       xhr.open("POST", path, true);
       xhr.onload = function() {
-        console.log('XHR.RESPONSE');
-        console.log(xhr.response);
         callback(null, xhr.response);
       }
       xhr.onerror = function(e) {
         err = "Request failed : #{e.target.status}";
         callback(err);
       }
-      console.log('attributes of send');
-      console.log(attributes);
       xhr.send(attributes);
-      console.log(xhr);
-      console.log(xhr.response);
     },
     save: function(id, data, callback) {
       return client.put("data/" + id + "/", data, function(error, response, body) {
