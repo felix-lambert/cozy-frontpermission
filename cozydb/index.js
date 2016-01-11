@@ -407,8 +407,6 @@
         err = "Request failed : #{e.target.status}";
         callback(err);
       }
-      console.log('attributes of send');
-      console.log(attributes);
       xhr.send();
     },
     create: function(attributes, callback) {
