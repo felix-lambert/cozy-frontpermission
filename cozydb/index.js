@@ -428,6 +428,7 @@
         err = "Request failed : #{e.target.status}";
         callback(err);
       }
+      xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(attributes);
     },
     save: function(id, data, callback) {
