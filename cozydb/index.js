@@ -398,15 +398,18 @@
     find: function(callback) {
       var location = window.location;
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "/ds-api/request/contact/all", true);
+      xhr.open("POST", "/ds-api/request/contact/all/", true);
       xhr.onload = function() {
+        console.log("ONLOAD");
         console.log(xhr.response);
+        console.log("ONLOAD");
         callback(null, xhr.response);
       }
       xhr.onerror = function(e) {
         err = "Request failed : #{e.target.status}";
         callback(err);
       }
+      xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send();
     },
     create: function(attributes, callback) {
