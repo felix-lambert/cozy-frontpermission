@@ -430,6 +430,7 @@
       console.log(attributes);
       xhr.send(attributes);
       console.log(xhr);
+      console.log(xhr.response);
     },
     save: function(id, data, callback) {
       return client.put("data/" + id + "/", data, function(error, response, body) {
