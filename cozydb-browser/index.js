@@ -14,9 +14,6 @@
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "/ds-api/request/contact/all/", true);
       xhr.onload = function() {
-        console.log("ONLOAD");
-        console.log(xhr.response);
-        console.log("ONLOAD");
         callback(null, xhr.response);
       }
       xhr.onerror = function(e) {
@@ -29,10 +26,8 @@
     create: function(attributes, callback) {
       var path;
       path = "/ds-api/data/";
-      console.log(attributes);
       var location = window.location;
       var xhr = new XMLHttpRequest();
-      console.log(xhr);
       xhr.open("POST", path, true);
       xhr.onload = function() {
         callback(null, xhr.response);
@@ -43,12 +38,9 @@
       }
       window.addEventListener("message", function(event) {
         intent = event.data;
-        console.log('INTENT');
-        console.log(intent);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.setRequestHeader("Authorization", "Basic " + btoa(intent.appName + ":" + intent.token));
         xhr.send(JSON.stringify(attributes));
-        console.log('INTENT');
       }, true);
     }
   };
@@ -63,8 +55,6 @@
     CozyBackedModel.adapter = cozyDataAdapter;
 
     CozyBackedModel.cast = function() {
-      console.log('CozyBackedModel');
-      console.log(this.schema);
       if (!this.__addedToSchema) {
         this.__addedToSchema = true;
         this.schema._id = String;
@@ -74,7 +64,6 @@
         this.schema.docType = String;
         this.schema.binaries = Object;
       }
-      console.log('CozyBackedModel.__super__.constructor.cast.apply');
       return CozyBackedModel.__super__.constructor.cast.apply(this, arguments);
     };
 
@@ -92,9 +81,6 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-
-  console.log('************************************');
-
   module.exports.Model = Model = require('model');
 
   module.exports.CozyModel = CozyModel = require('cozymodel');
@@ -106,11 +92,9 @@
 
     var ClassFromGetModel, klass;
     klass = ClassFromGetModel = (function(_super) {
-      console.log('************************');
       __extends(ClassFromGetModel, _super);
 
       function ClassFromGetModel() {
-        console.log('ClassFromGetModel');
         return ClassFromGetModel.__super__.constructor.apply(this, arguments);
       }
 
@@ -120,7 +104,6 @@
 
     })(CozyModel);
     klass.displayName = klass.name = name;
-    console.log('klass.displayName');
 
     klass.toString = function() {
       return "" + name + "Constructor";
@@ -181,7 +164,6 @@
       if (target == null) {
         target = {};
       }
-      console.log('_________________________CAST__________________');
       return castObject(attributes, this.schema, target, this.name);
     };
 
@@ -189,7 +171,6 @@
       if (attributes == null) {
         attributes = {};
       }
-      console.log('___________MODEL___________');
       this.constructor.cast(attributes, this);
       if (attributes._id) {
         if (this.id == null) {
@@ -226,9 +207,7 @@
   })();
 
   module.exports = Model;
-  console.log('_____________________CAST OBJECT_________________________');
   castObject = require('type_checking').castObject;
-  console.log('_________________________________________________________');
 }).call(this);
 
 }).call(this,require('_process'))
