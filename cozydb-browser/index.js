@@ -508,7 +508,7 @@ Logger = (function() {
 })();
 
 }).call(this,require('_process'))
-},{"./date-format":119,"_process":136}],121:[function(require,module,exports){
+},{"_process":136}],121:[function(require,module,exports){
 (function (Buffer){
 
 
