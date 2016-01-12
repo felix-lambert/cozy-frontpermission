@@ -46,7 +46,7 @@
         console.log('INTENT');
         console.log(intent);
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Authorization", "Basic " + btoa(intent.appName":" + intent.token));
+        xhr.setRequestHeader("Authorization", "Basic " + btoa(intent.appName + ":" + intent.token));
         xhr.send(JSON.stringify(attributes));
         console.log('INTENT');
       }, true);
