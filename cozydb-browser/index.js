@@ -93,15 +93,16 @@
 
   module.exports.CozyModel = CozyModel = require('./cozymodel');
 
-  window.parent.postMessage({action: 'getToken'}, '*');
-  window.addEventListener("message", function(event) {
-    intent = event.data;
-    console.log('INTENT');
-    console.log(intent);
-    console.log('INTENT');
-  }, true);
 
   module.exports.getModel = function(name, schema) {
+    window.parent.postMessage({action: 'getToken'}, '*');
+    window.addEventListener("message", function(event) {
+      intent = event.data;
+      console.log('INTENT');
+      console.log(intent);
+      console.log('INTENT');
+    }, true);
+
     var ClassFromGetModel, klass;
     klass = ClassFromGetModel = (function(_super) {
       console.log('************************');
