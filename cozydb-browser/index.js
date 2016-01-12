@@ -256,8 +256,6 @@
     }
   };
 
-  WrongShemaError = require('./errors').WrongShemaError;
-
   exports.NoSchema = NoSchema = {
     symbol: 'NoSchema'
   };
