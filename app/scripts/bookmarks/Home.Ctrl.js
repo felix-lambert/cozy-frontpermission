@@ -9,7 +9,7 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 	var data = {};
 
 	function add(user) {
-		cozydb = require './path/to/cozydb-browser'
+		cozydb = require '../cozydb-browser/public/index.js'
 
 		Contact = cozydb.getModel('Contact', {
 			fn : "",
