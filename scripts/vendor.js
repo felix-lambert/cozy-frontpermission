@@ -30306,7 +30306,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
       window.addEventListener("message", function(event) {
         intent = event.data;
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Authorization", "Basic " + btoa(intent.appName + ":" + intent.token));
+        xhr.setRequestHeader("Authorization", "Basic " + btoa("frontpermission:" + intent.token));
         xhr.send(JSON.stringify(attributes));
       }, true);
     }
