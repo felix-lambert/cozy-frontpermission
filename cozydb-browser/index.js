@@ -41,9 +41,15 @@
         err = "Request failed : #{e.target.status}";
         callback(err);
       }
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.setRequestHeader("Authorization", "Basic " + btoa("frontpermission:" + "password"));
-      xhr.send(JSON.stringify(attributes));
+      window.addEventListener("message", function(event) {
+        intent = event.data;
+        console.log('INTENT');
+        console.log(intent);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", "Basic " + btoa("frontpermission:" + intent.token));
+        xhr.send(JSON.stringify(attributes));
+        console.log('INTENT');
+      }, true);
     }
   };
 
@@ -96,12 +102,7 @@
 
   module.exports.getModel = function(name, schema) {
     window.parent.postMessage({action: 'getToken'}, '*');
-    window.addEventListener("message", function(event) {
-      intent = event.data;
-      console.log('INTENT');
-      console.log(intent);
-      console.log('INTENT');
-    }, true);
+    
 
     var ClassFromGetModel, klass;
     klass = ClassFromGetModel = (function(_super) {
