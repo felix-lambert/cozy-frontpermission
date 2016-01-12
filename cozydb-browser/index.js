@@ -365,7 +365,7 @@
 }).call(this);
 
 }).call(this,require('_process'))
-},{"../model":5,"./errors":8, "./utils/type_checking":10,"_process":136}], 121:[function(require,module,exports){
+},{"../model":5,"./utils/type_checking":10,"_process":136}], 121:[function(require,module,exports){
 (function (Buffer){
 
 
