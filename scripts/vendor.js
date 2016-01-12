@@ -30427,7 +30427,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
     };
 
     Model.cast = function(attributes, target) {
-      console.log('Model.cast');
       if (target == null) {
         target = {};
       }
@@ -30552,7 +30551,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
         out[key] = pvalue;
       }
     } else if (type.prototype instanceof Model) {
-      console.log('type.prototype instanceof Model');
       out = type.cast(value);
     } else if (_isArray(type)) {
       if (!type[0]) {
@@ -30579,7 +30577,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
   reportCastIgnore = ((_ref = process.env.NODE_ENV) !== 'production' && _ref !== 'test') || process.env.NO_CAST_WARNING;
 
   exports.castObject = castObject = function(raw, schema, target, name) {
-    console.log("castObject");
     var handled, prop, typeOrOptions, value;
     if (target == null) {
       target = {};
