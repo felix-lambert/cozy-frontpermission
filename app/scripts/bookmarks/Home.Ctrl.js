@@ -24,7 +24,7 @@ function HomeAngCtrl($scope, $injector, $rootScope, $q) {
 		});
 
 		Contact.create(data, function(err, body) {
-		    console.log err, body
+		    console.log(err, body);
 		});
 		// console.log('create contact');
 		// console.log('contact');
